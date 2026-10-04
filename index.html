@@ -3,178 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Step Navigation</title>
+    <title>ECG Diagnosis Tool</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Tailwind gray-100 */
+            background-color: #fafafa; /* Very light neutral background */
+            color: #333;
         }
 
-        /* Glider smooth transition */
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Glider smooth transition with Liquid Glass (Glassmorphism) effect */
         #glider {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         /* Snappy spring animation for the buttons */
         .step-btn {
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
         }
 
         /* Enlarge effect active class */
         .step-active {
-            transform: scale(1.25);
-            color: white !important;
-            font-weight: 800;
+            transform: scale(1.35);
+            color: #0f172a !important; 
+            font-weight: 700;
         }
         
-        /* Subtle content fade animation */
+        /* Content fade animation */
         .fade-in {
             animation: fadeIn 0.4s ease-out forwards;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hide scrollbar for the nav container on mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Range Slider Styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #64748b;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: #e2e8f0;
+            border-radius: 4px;
+        }
+        input[type=range]:focus {
+            outline: none;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center pt-16 px-4">
+<body class="min-h-screen flex flex-col items-center pt-10 pb-16 px-4 sm:px-6">
 
-    <header class="w-full max-w-lg mb-12 flex justify-center">
-        <!-- Rounded Navigation Container -->
-        <nav class="relative flex items-center p-2 bg-white rounded-full shadow-lg border border-gray-100">
-            
-            <!-- The Gliding Background Indicator -->
-            <!-- The left and top match the padding of the nav container (p-2 = 0.5rem = 8px) -->
-            <div id="glider" class="absolute left-2 top-2 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full shadow-md z-0 pointer-events-none"></div>
+    <header class="w-full max-w-5xl mb-10 flex flex-col items-center">
+        <!-- Main Title -->
+        <h1 class="text-4xl md:text-5xl font-playfair font-bold text-slate-800 mb-8 text-center tracking-tight drop-shadow-sm">
+            10 Step ECG diagnosis
+        </h1>
 
-            <div class="relative z-10 flex gap-4">
-                <button class="step-btn w-12 h-12 flex items-center justify-center rounded-full text-gray-500 font-semibold text-lg cursor-pointer focus:outline-none" data-step="1">
-                    1
-                </button>
-                <button class="step-btn w-12 h-12 flex items-center justify-center rounded-full text-gray-500 font-semibold text-lg cursor-pointer focus:outline-none" data-step="2">
-                    2
-                </button>
-                <button class="step-btn w-12 h-12 flex items-center justify-center rounded-full text-gray-500 font-semibold text-lg cursor-pointer focus:outline-none" data-step="3">
-                    3
-                </button>
-                <button class="step-btn w-12 h-12 flex items-center justify-center rounded-full text-gray-500 font-semibold text-lg cursor-pointer focus:outline-none" data-step="4">
-                    4
-                </button>
-            </div>
-        </nav>
+        <!-- Scrollable Navigation Container -->
+        <div class="w-full overflow-x-auto no-scrollbar py-6 px-2">
+            <nav id="nav-container" class="relative flex items-center p-2 bg-slate-200/50 rounded-full shadow-inner mx-auto min-w-max border border-slate-200">
+                
+                <!-- Liquid Glass Glider -->
+                <div id="glider" class="absolute top-2 w-12 h-12 rounded-full z-0 pointer-events-none"></div>
+
+                <div id="tabs-container" class="relative z-10 flex gap-4 px-1">
+                    <!-- Tabs injected by JS -->
+                </div>
+            </nav>
+        </div>
     </header>
 
-    <main class="w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-        <!-- Content gets injected here by JavaScript -->
-        <div id="content-area" class="p-8 md:p-12 min-h-[300px] flex flex-col justify-center">
-            <!-- Initial placeholder (overwritten on load) -->
+    <main class="w-full max-w-4xl bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+        <div id="content-area" class="p-6 sm:p-8 md:p-10 min-h-[500px]">
+            <!-- Dynamic Content -->
         </div>
     </main>
 
     <script>
-        const buttons = document.querySelectorAll('.step-btn');
+        const TOTAL_STEPS = 11;
+        const tabsContainer = document.getElementById('tabs-container');
         const glider = document.getElementById('glider');
         const contentArea = document.getElementById('content-area');
 
-        // Mock data to simulate different files/pages for each step
-        const pageData = {
-            1: {
-                title: "Welcome to Step 1",
-                subtitle: "Getting Started",
-                content: "This is the initial setup phase. Imagine this as your first independent HTML file. We can collect user information, show an introductory video, or present terms of service here."
-            },
-            2: {
-                title: "Configuration - Step 2",
-                subtitle: "Customize your experience",
-                content: "You've glided seamlessly to the second page! Here is where we'd put forms for user preferences, settings, or upload fields. Notice how smooth the transition feels."
-            },
-            3: {
-                title: "Review Details - Step 3",
-                subtitle: "Almost there",
-                content: "This simulates the third file. Users would review their inputs here. The spring animation on the numbers keeps the user engaged with the navigation."
-            },
-            4: {
-                title: "Complete - Step 4",
-                subtitle: "You're all set!",
-                content: "The final page is reached. The progress is complete. We can show a success checkmark, confetti, or a final submit button to finalize the multi-step journey."
-            }
-        };
+        // Generate 11 tabs dynamically
+        for (let i = 1; i <= TOTAL_STEPS; i++) {
+            const btn = document.createElement('button');
+            // Add font-playfair to numbers as requested
+            btn.className = `step-btn font-playfair w-12 h-12 flex items-center justify-center rounded-full text-slate-500 text-xl cursor-pointer focus:outline-none`;
+            btn.setAttribute('data-step', i);
+            btn.innerText = i;
+            tabsContainer.appendChild(btn);
+        }
 
-        function updateContent(stepNum) {
-            const data = pageData[stepNum];
-            
-            // Remove animation class to re-trigger it
-            contentArea.classList.remove('fade-in');
-            
-            // Trigger reflow to restart animation
-            void contentArea.offsetWidth; 
-            
-            contentArea.innerHTML = `
-                <span class="text-sm font-bold tracking-widest text-indigo-500 uppercase mb-2 block">${data.subtitle}</span>
-                <h1 class="text-3xl font-extrabold text-gray-800 mb-4">${data.title}</h1>
-                <p class="text-lg text-gray-600 leading-relaxed">${data.content}</p>
-                <div class="mt-8 pt-6 border-t border-gray-100">
-                    <p class="text-sm text-gray-400">Currently viewing simulated page ${stepNum}.</p>
+        const buttons = document.querySelectorAll('.step-btn');
+
+        function getStep1HTML() {
+            return `
+                <div class="mb-10">
+                    <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 1: Adequacy and Technicality</h2>
+                    <p class="text-slate-500 font-medium border-l-4 border-slate-300 pl-4 py-1">Before interpreting any ECG, quickly check:</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Section 1: Patient Details -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span> Patient details
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Name / ID</label>
+                                <input type="text" placeholder="Enter Patient Name or ID" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Date & time of ECG</label>
+                                <input type="datetime-local" id="ecg-datetime" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition bg-white">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Calibration -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span> Calibration
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="block text-sm font-medium text-slate-600">Paper speed</label>
+                                    <span id="speed-val" class="text-sm font-semibold text-slate-700 bg-white border border-slate-200 px-2 py-1 rounded">25 mm/sec</span>
+                                </div>
+                                <input type="range" min="5" max="50" step="5" value="25" oninput="document.getElementById('speed-val').innerText = this.value + ' mm/sec'">
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="block text-sm font-medium text-slate-600">Amplitude</label>
+                                    <span id="amp-val" class="text-sm font-semibold text-slate-700 bg-white border border-slate-200 px-2 py-1 rounded">10 mm/mV</span>
+                                </div>
+                                <input type="range" min="5" max="25" step="1" value="10" oninput="document.getElementById('amp-val').innerText = this.value + ' mm/mV'">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Lead placement -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span> Lead placement
+                        </h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
+                                <span class="text-slate-700">Limb leads correctly placed</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
+                                <span class="text-slate-700">Chest leads V1–V6 correctly positioned</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Artifacts -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span> Artifacts
+                        </h3>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
+                                <span class="text-slate-700">Excessive movement artifact</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
+                                <span class="text-slate-700">Electrical interference</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
+                                <span class="text-slate-700">Loose/disconnected leads</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: All 12 leads present -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 md:col-span-1">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span> All 12 leads present
+                        </h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
+                                <span class="text-slate-700">I, II, III</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
+                                <span class="text-slate-700">aVR, aVL, aVF</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer col-span-2">
+                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
+                                <span class="text-slate-700">V1–V6</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: Check for lead reversal -->
+                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 md:col-span-1">
+                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
+                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">6</span> Check for lead reversal
+                        </h3>
+                        <div class="space-y-4">
+                            <p class="text-sm text-slate-600 leading-relaxed bg-white p-3 rounded-lg border border-slate-100">
+                                In normal sinus rhythm, aVR should generally have negative P, QRS and T. <br><br>
+                                <strong>Unexpected positive P/QRS in aVR</strong> → suspect limb-lead reversal, especially RA–LA reversal.
+                            </p>
+                            
+                            <div class="pt-2">
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Select aVR Status:</label>
+                                <select class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition bg-white text-slate-700 cursor-pointer">
+                                    <option value="" disabled selected>Select observation...</option>
+                                    <option value="negative">aVR negative</option>
+                                    <option value="positive">aVR positive</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             `;
+        }
+
+        function getPlaceholderHTML(step) {
+            return `
+                <div class="flex flex-col items-center justify-center h-full py-24 text-center">
+                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-slate-100">
+                        <span class="text-3xl font-playfair font-bold text-slate-300">${step}</span>
+                    </div>
+                    <h2 class="text-3xl font-playfair font-bold text-slate-700 mb-4">Step ${step}</h2>
+                    <p class="text-slate-500 max-w-sm">Detailed parameters and inputs for step ${step} of the diagnostic process will be populated here.</p>
+                </div>
+            `;
+        }
+
+        function updateContent(stepNum) {
+            contentArea.classList.remove('fade-in');
+            void contentArea.offsetWidth; // Trigger reflow for animation restart
             
-            // Add animation class
+            if (parseInt(stepNum) === 1) {
+                contentArea.innerHTML = getStep1HTML();
+                
+                // Auto-fill current date and time
+                const dtInput = document.getElementById('ecg-datetime');
+                if (dtInput) {
+                    const now = new Date();
+                    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                    dtInput.value = now.toISOString().slice(0, 16);
+                }
+            } else {
+                contentArea.innerHTML = getPlaceholderHTML(stepNum);
+            }
+            
             contentArea.classList.add('fade-in');
         }
 
         function selectStep(btn) {
-            // 1. Calculate glider position relative to the container
-            // The nav padding is 8px (p-2), which matches the absolute left-2/top-2 starting position.
-            // So we just need to translate X by the difference between the button's left position 
-            // and the first button's left position (which is 8px).
-            
-            // Getting the relative offset from the parent container
-            const containerLeft = btn.parentElement.getBoundingClientRect().left;
-            const btnLeft = btn.getBoundingClientRect().left;
-            
-            // Transform value is the exact horizontal offset
-            const translateX = btnLeft - containerLeft;
-            glider.style.transform = `translateX(${translateX}px)`;
+            const btnLeft = btn.offsetLeft;
+            glider.style.left = `${btnLeft}px`;
 
-            // 2. Update button styles (reset all, then activate clicked)
-            buttons.forEach(b => {
-                b.classList.remove('step-active');
-            });
-            
-            // Add snappy active class to clicked button
+            buttons.forEach(b => b.classList.remove('step-active'));
             btn.classList.add('step-active');
 
-            // 3. Update the simulated page content
-            const stepNum = btn.getAttribute('data-step');
-            updateContent(stepNum);
+            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            updateContent(btn.getAttribute('data-step'));
         }
 
-        // Add click event listeners to all indicators
         buttons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                selectStep(btn);
-            });
+            btn.addEventListener('click', () => selectStep(btn));
         });
 
-        // Initialize the first step on page load
+        // Initialize First Tab on Load
         window.addEventListener('DOMContentLoaded', () => {
-            selectStep(buttons[0]);
+            setTimeout(() => {
+                selectStep(buttons[0]);
+            }, 100); // slight delay ensures DOM is fully painted for accurate offset calculation
         });
 
-        // Ensure glider stays correctly positioned if window resizes
+        // Snap glider into correct place on resize
         window.addEventListener('resize', () => {
             const activeBtn = document.querySelector('.step-active');
             if (activeBtn) {
-                // Temporarily disable transition for instant snap on resize
                 glider.style.transition = 'none';
-                selectStep(activeBtn);
-                // Restore transition
+                glider.style.left = `${activeBtn.offsetLeft}px`;
                 setTimeout(() => {
-                    glider.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                    glider.style.transition = 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
                 }, 50);
             }
         });
