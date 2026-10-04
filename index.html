@@ -1,1 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Navigation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+        }
 
+        /* Glider smooth transition */
+        #glider {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Snappy spring animation for the buttons */
+        .step-btn {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+        }
+
+        /* Enlarge effect active class */
+        .step-active {
+            transform: scale(1.25);
+            color: white !important;
+            font-weight: 800;
+        }
+        
+        /* Subtle content fade animation */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center pt-16 px-4">
+
+    <header class="w-full max-w-lg mb-12 flex justify-center">
+        <!-- Rounded Navigation Container -->
+        <nav class="relative flex items-center p-2 bg-white rounded-full shadow-lg border border-gray-100">
+            
+            <!-- The Gliding Background Indicator -->
+            <!-- The left and top match the padding of the nav container (p-2 = 0.5rem = 8px) -->
+            <div id="glider" class="absolute left-2 top-2 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full shadow-md z-0 pointer-events-none"></div>
+
+            <div class="relative z-10 flex gap-4">
+                <button class="step-btn w-12 h-12 flex items-center justify-center rounded-full text-gray-500 font-semibold text-lg cursor-pointer focus:outline-none" data-step="1">
+                    1
+                </button>
+                <button class="step-btn w-12 h-12 flex items-center justify-center rounded-full text-gray-500 font-semibold text-lg cursor-pointer focus:outline-none" data-step="2">
+                    2
+                </button>
+                <button class="step-btn w-12 h-12 flex items-center justify-center rounded-full text-gray-500 font-semibold text-lg cursor-pointer focus:outline-none" data-step="3">
+                    3
+                </button>
+                <button class="step-btn w-12 h-12 flex items-center justify-center rounded-full text-gray-500 font-semibold text-lg cursor-pointer focus:outline-none" data-step="4">
+                    4
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="w-full max-w-2xl bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+        <!-- Content gets injected here by JavaScript -->
+        <div id="content-area" class="p-8 md:p-12 min-h-[300px] flex flex-col justify-center">
+            <!-- Initial placeholder (overwritten on load) -->
+        </div>
+    </main>
+
+    <script>
+        const buttons = document.querySelectorAll('.step-btn');
+        const glider = document.getElementById('glider');
+        const contentArea = document.getElementById('content-area');
+
+        // Mock data to simulate different files/pages for each step
+        const pageData = {
+            1: {
+                title: "Welcome to Step 1",
+                subtitle: "Getting Started",
+                content: "This is the initial setup phase. Imagine this as your first independent HTML file. We can collect user information, show an introductory video, or present terms of service here."
+            },
+            2: {
+                title: "Configuration - Step 2",
+                subtitle: "Customize your experience",
+                content: "You've glided seamlessly to the second page! Here is where we'd put forms for user preferences, settings, or upload fields. Notice how smooth the transition feels."
+            },
+            3: {
+                title: "Review Details - Step 3",
+                subtitle: "Almost there",
+                content: "This simulates the third file. Users would review their inputs here. The spring animation on the numbers keeps the user engaged with the navigation."
+            },
+            4: {
+                title: "Complete - Step 4",
+                subtitle: "You're all set!",
+                content: "The final page is reached. The progress is complete. We can show a success checkmark, confetti, or a final submit button to finalize the multi-step journey."
+            }
+        };
+
+        function updateContent(stepNum) {
+            const data = pageData[stepNum];
+            
+            // Remove animation class to re-trigger it
+            contentArea.classList.remove('fade-in');
+            
+            // Trigger reflow to restart animation
+            void contentArea.offsetWidth; 
+            
+            contentArea.innerHTML = `
+                <span class="text-sm font-bold tracking-widest text-indigo-500 uppercase mb-2 block">${data.subtitle}</span>
+                <h1 class="text-3xl font-extrabold text-gray-800 mb-4">${data.title}</h1>
+                <p class="text-lg text-gray-600 leading-relaxed">${data.content}</p>
+                <div class="mt-8 pt-6 border-t border-gray-100">
+                    <p class="text-sm text-gray-400">Currently viewing simulated page ${stepNum}.</p>
+                </div>
+            `;
+            
+            // Add animation class
+            contentArea.classList.add('fade-in');
+        }
+
+        function selectStep(btn) {
+            // 1. Calculate glider position relative to the container
+            // The nav padding is 8px (p-2), which matches the absolute left-2/top-2 starting position.
+            // So we just need to translate X by the difference between the button's left position 
+            // and the first button's left position (which is 8px).
+            
+            // Getting the relative offset from the parent container
+            const containerLeft = btn.parentElement.getBoundingClientRect().left;
+            const btnLeft = btn.getBoundingClientRect().left;
+            
+            // Transform value is the exact horizontal offset
+            const translateX = btnLeft - containerLeft;
+            glider.style.transform = `translateX(${translateX}px)`;
+
+            // 2. Update button styles (reset all, then activate clicked)
+            buttons.forEach(b => {
+                b.classList.remove('step-active');
+            });
+            
+            // Add snappy active class to clicked button
+            btn.classList.add('step-active');
+
+            // 3. Update the simulated page content
+            const stepNum = btn.getAttribute('data-step');
+            updateContent(stepNum);
+        }
+
+        // Add click event listeners to all indicators
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                selectStep(btn);
+            });
+        });
+
+        // Initialize the first step on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            selectStep(buttons[0]);
+        });
+
+        // Ensure glider stays correctly positioned if window resizes
+        window.addEventListener('resize', () => {
+            const activeBtn = document.querySelector('.step-active');
+            if (activeBtn) {
+                // Temporarily disable transition for instant snap on resize
+                glider.style.transition = 'none';
+                selectStep(activeBtn);
+                // Restore transition
+                setTimeout(() => {
+                    glider.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                }, 50);
+            }
+        });
+    </script>
+</body>
+</html>
