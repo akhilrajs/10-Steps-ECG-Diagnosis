@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECG Diagnosis Tool - Step 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Very light, elegant slate */
+            color: #334155;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Liquid Glass (Glassmorphism) effect for the Glider */
+        #glider {
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Snappy spring animation for the navigation buttons */
+        .step-btn {
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+        }
+
+        .step-active {
+            transform: scale(1.35);
+            color: #0f172a !important; 
+            font-weight: 700;
+        }
+        
+        /* Hide scrollbar for the nav container on mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Checkbox styling enhancement */
+        input[type=checkbox] {
+            cursor: pointer;
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: #4f46e5; /* Indigo 600 */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center pt-10 pb-20 px-4 sm:px-6">
+
+    <header class="w-full max-w-5xl mb-10 flex flex-col items-center">
+        <!-- Main Title -->
+        <h1 class="text-4xl md:text-5xl font-playfair font-bold text-slate-800 mb-8 text-center tracking-tight drop-shadow-sm">
+            10 Step ECG diagnosis
+        </h1>
+
+        <!-- Scrollable Navigation Container -->
+        <div class="w-full overflow-x-auto no-scrollbar py-6 px-2">
+            <nav id="nav-container" class="relative flex items-center p-2 bg-slate-200/50 rounded-full shadow-inner mx-auto min-w-max border border-slate-200">
+                <!-- Liquid Glass Glider -->
+                <div id="glider" class="absolute top-2 w-12 h-12 rounded-full z-0 pointer-events-none"></div>
+                <!-- Tabs Container -->
+                <div id="tabs-container" class="relative z-10 flex gap-4 px-1">
+                    <!-- Tabs will be injected via JS -->
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="w-full max-w-4xl bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8 md:p-10" id="diagnosis-form">
+            <div class="mb-8">
+                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 2: Regularity</h2>
+                <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Determine the regularity of the R-R intervals.</p>
+            </div>
+
+            <!-- Options Selection -->
+            <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm mb-8">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> Select Regularity
+                </h3>
+                <div class="flex flex-col sm:flex-row gap-6 pt-2">
+                    <label class="flex items-center gap-3 group cursor-pointer bg-white px-5 py-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition flex-1">
+                        <input type="checkbox" id="reg-regular" class="rounded border-gray-300 transition">
+                        <span class="text-slate-700 group-hover:text-indigo-700 font-medium transition">Regular</span>
+                    </label>
+                    <label class="flex items-center gap-3 group cursor-pointer bg-white px-5 py-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition flex-1">
+                        <input type="checkbox" id="reg-irregular" class="rounded border-gray-300 transition">
+                        <span class="text-slate-700 group-hover:text-indigo-700 font-medium transition">Irregular</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Image Guide Section -->
+            <div class="bg-indigo-50/30 rounded-2xl p-6 border border-indigo-50 shadow-sm mb-8">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> How to read regularity
+                </h3>
+                <div class="bg-white p-2 rounded-xl border border-slate-200 shadow-sm overflow-hidden flex justify-center">
+                    <!-- Note: .tiff files may not render natively in all web browsers. Provided as requested. -->
+                    <img src="https://raw.githubusercontent.com/akhilrajs/10-Steps-ECG-Diagnosis/refs/heads/main/Regularity.tiff" 
+                         alt="Guide to reading ECG regularity" 
+                         class="max-w-full h-auto rounded-lg object-contain"
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-8 text-center text-slate-500 bg-slate-50 rounded-lg w-full\'><svg class=\'w-12 h-12 mx-auto text-slate-300 mb-3\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\'></path></svg>Image (TIFF) format might not be supported in your current browser. Please check the source link.</div>';">
+                </div>
+            </div>
+
+            <!-- Live Interpretation Box -->
+            <div class="mt-8 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
+                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Step 2 Interpretation
+                </h3>
+                <div class="space-y-3 text-lg md:text-xl text-slate-700" id="live-interpretation">
+                    <!-- Automatically populated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // --- Navigation Setup ---
+        const TOTAL_STEPS = 11;
+        const CURRENT_STEP = 2; // Set to Step 2
+        const tabsContainer = document.getElementById('tabs-container');
+        const glider = document.getElementById('glider');
+
+        // Generate 11 tabs dynamically
+        for (let i = 1; i <= TOTAL_STEPS; i++) {
+            const btn = document.createElement('button');
+            btn.className = `step-btn font-playfair w-12 h-12 flex items-center justify-center rounded-full text-slate-500 text-xl cursor-pointer focus:outline-none`;
+            btn.innerText = i;
+            
+            if (i === CURRENT_STEP) {
+                btn.classList.add('step-active');
+                btn.id = 'active-tab';
+            } else {
+                // Clicking other tabs navigates to corresponding pages
+                btn.onclick = () => {
+                    // Assuming page 1 is index.html or page_1.html based on context
+                    const targetPage = i === 1 ? 'page_1.html' : `page_${i}.html`;
+                    window.location.href = targetPage;
+                };
+            }
+            tabsContainer.appendChild(btn);
+        }
+
+        // Initialize Glider Position
+        function updateGlider() {
+            const activeBtn = document.getElementById('active-tab');
+            if (activeBtn) {
+                glider.style.left = `${activeBtn.offsetLeft}px`;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateGlider, 100); 
+            updateInterpretation(); // Initial render
+        });
+
+        window.addEventListener('resize', () => {
+            glider.style.transition = 'none';
+            updateGlider();
+            setTimeout(() => {
+                glider.style.transition = 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, 50);
+        });
+
+        // --- Live Interpretation & Logic ---
+        
+        const checkRegular = document.getElementById('reg-regular');
+        const checkIrregular = document.getElementById('reg-irregular');
+
+        // Ensure mutually exclusive checkboxes
+        checkRegular.addEventListener('change', () => {
+            if (checkRegular.checked) {
+                checkIrregular.checked = false;
+            }
+            updateInterpretation();
+        });
+
+        checkIrregular.addEventListener('change', () => {
+            if (checkIrregular.checked) {
+                checkRegular.checked = false;
+            }
+            updateInterpretation();
+        });
+
+        function updateInterpretation() {
+            let status = "Pending input";
+            if (checkRegular.checked) status = "Regular";
+            if (checkIrregular.checked) status = "Irregular";
+
+            // Update UI
+            const interpHTML = `
+                <p><strong class="text-indigo-900 font-semibold">Regularity:</strong> 
+                   <span class="${status === 'Pending input' ? 'text-slate-400' : 'text-slate-800 font-medium'}">${status}</span>
+                </p>
+            `;
+            document.getElementById('live-interpretation').innerHTML = interpHTML;
+
+            // Save to LocalStorage for page 11 (Report page)
+            // Saving specifically as step2_report as requested, plus full HTML payload for easy assembly
+            localStorage.setItem('step2_report', status);
+            
+            const step2Data = {
+                regularity: status,
+                htmlSummary: interpHTML 
+            };
+            localStorage.setItem('ecg_step2_data', JSON.stringify(step2Data));
+        }
+    </script>
+</body>
+</html>
