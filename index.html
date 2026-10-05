@@ -487,7 +487,7 @@
 
             <div class="mt-8 bg-indigo-50/30 rounded-2xl p-6 border border-indigo-50 shadow-sm">
                 <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                    <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">4</span> How to calculate intervals (source : British Journel of Cardiology
+                    <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">4</span> How to calculate intervals
                 </h3>
                 <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm overflow-hidden flex justify-center mt-2">
                     <img src="https://raw.githubusercontent.com/akhilrajs/10-Steps-ECG-Diagnosis/main/intervals.png" 
@@ -509,6 +509,102 @@
             </div>
         </div>
 
+        <div id="step-6-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
+            <div class="mb-10">
+                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 6: Chamber Enlargements</h2>
+                <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Identify potential atrial and ventricular abnormalities.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-step-6">
+                
+                <!-- Section 1: Right Atrial Abnormality -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> Right atrial abnormality (RAA)
+                    </h3>
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="raa-1" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">P wave is taller than 2.5 mm/smallboxes in Lead II</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Section 2: Left Atrial Abnormality -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> Left atrial abnormality (LAA)
+                    </h3>
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="laa-1" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">P wave > 3 small squares wide (120 ms)</span>
+                        </label>
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="laa-2" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Bifid P in lead II (with inter-peak distance > 1 mm)</span>
+                        </label>
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="laa-3" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Biphasic in lead V1 (negative deflection in V1 is >1 mm wide)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Section 3: Left Ventricular Hypertrophy -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-semibold text-slate-800 flex items-center gap-2 flex-wrap">
+                            <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">3</span> Left ventricular hypertrophy (LVH)
+                            <button onclick="openModal()" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-2 py-1 rounded-md transition border border-indigo-100">(Sokolow-Lyon criteria)</button>
+                        </h3>
+                    </div>
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="lvh-1" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Height of the R in V5/V6 + S in V1 > 35 mm</span>
+                        </label>
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="lvh-2" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">R wave in lead aVL > 11 mm.</span>
+                        </label>
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="lvh-3" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">ST depression and T wave inversion in V5, V6, I and aVL</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Section 4: Right Ventricular Hypertrophy -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">4</span> Right ventricular hypertrophy (RVH)
+                    </h3>
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="rvh-1" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Ratio of the heights of R and S in lead V1 > 1</span>
+                        </label>
+                        <label class="flex items-start gap-3 group">
+                            <input type="checkbox" id="rvh-2" class="mt-0.5 w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Ratio of R/S in lead V2 > 1.5</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Interpretation Box Step 6 -->
+            <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
+                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Step 6 Interpretation
+                </h3>
+                <div class="space-y-4 text-sm md:text-base text-slate-700" id="live-interpretation-6">
+                    <!-- Automatically populated by JS -->
+                </div>
+            </div>
+        </div>
+
         <div id="step-placeholder-container" class="step-container hidden p-10 flex flex-col items-center justify-center h-full min-h-[40vh] text-center">
             <svg class="w-16 h-16 text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             <h2 class="text-2xl font-playfair font-bold text-slate-700 mb-2" id="placeholder-title">Under Construction</h2>
@@ -516,6 +612,42 @@
         </div>
 
     </main>
+
+    <div id="sokolow-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/40 backdrop-blur-sm transition-opacity" onclick="closeModal(event)">
+        <div class="bg-white rounded-3xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto m-4 border border-slate-100" onclick="event.stopPropagation()">
+            <div class="p-6 sm:p-8">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 class="text-2xl font-playfair font-bold text-slate-800">Sokolow–Lyon criteria (1949)</h2>
+                    <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 transition p-1 bg-slate-100 hover:bg-slate-200 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                
+                <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+                    <p>Maurice Sokolow and Thomas Lyon tried to improve recognition of early and atypical LVH using the recently introduced unipolar limb and precordial leads. They aimed to define abnormalities seen on the ECG, examine the importance of cardiac position and determine whether delayed ventricular activation provided additional diagnostic information [Sokolow and Lyon, 1949].</p>
+                    
+                    <h4 class="font-bold text-slate-800 mt-4">Original criterion</h4>
+                    <p class="font-semibold text-indigo-700 bg-indigo-50 p-2 rounded border border-indigo-100 text-center">SV1 + max(RV5, V6) ≥ 35 mm</p>
+                    <p>The original scheme was broader than this voltage sum and also incorporated lateral precordial voltage, ST–T abnormalities, delayed ventricular activation and cardiac orientation.</p>
+
+                    <h4 class="font-bold text-slate-800 mt-4">Evidence and significance</h4>
+                    <p>They selected 200 patients with an abnormal ECG and a clinical condition associated with increased left ventricular load, including hypertension, aortic valve disease and coarctation. After exclusions a group of 147 patients, 90% of whom had severe hypertension, were compared with 151 apparently healthy controls.</p>
+                    <p>The combined SV1 + max(RV5,V6) voltage reached 35 mm in 48 of 147 patients with presumed LVH but in none of the controls. However, this was not an anatomical validation study and LVH was inferred from the clinical condition, ECG and cardiac size rather than measured by echocardiography, cardiac magnetic resonance or autopsy LV mass.</p>
+                    <p>The precordial leads helped identify patients whose standard limb leads appeared normal or "atypical". The paper reinforced that repolarisation abnormalities and delayed activation could be diagnostically important even when voltage criteria were absent.</p>
+
+                    <h4 class="font-bold text-slate-800 mt-4">Modern interpretation</h4>
+                    <p>Today, the Sokolow–Lyon criterion usually refers <em>only</em> to SV1 + max(RV5, V6) ≥ 35 mm.</p>
+                    <p>Additional findings from the same paper that remain in use are:</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>RV5 or RV6 > 26 mm</li>
+                        <li>RaVL > 11 mm</li>
+                        <li>R-wave peak time > 50 ms in V5 or V6</li>
+                    </ul>
+                    <p class="italic">Sokolow–Lyon voltage remains supportive when positive but is too insensitive to exclude anatomical LVH when negative.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         const TOTAL_STEPS = 11;
@@ -596,6 +728,7 @@
             updateInterpretationStep3();
             updateInterpretationStep4();
             updateInterpretationStep5();
+            updateInterpretationStep6();
         });
 
         const pName = document.getElementById('patient-name');
@@ -926,6 +1059,107 @@
 
             // Save to localStorage for report later
             localStorage.setItem('ecg_step5_data', JSON.stringify({ htmlSummary: targetDiv.innerHTML }));
+        }
+
+        document.getElementById('form-step-6').addEventListener('change', updateInterpretationStep6);
+
+        function updateInterpretationStep6() {
+            const isRAA = document.getElementById('raa-1').checked;
+            
+            const isLAA = document.getElementById('laa-1').checked || 
+                          document.getElementById('laa-2').checked || 
+                          document.getElementById('laa-3').checked;
+                          
+            const isLVH = document.getElementById('lvh-1').checked || 
+                          document.getElementById('lvh-2').checked || 
+                          document.getElementById('lvh-3').checked;
+                          
+            const isRVH = document.getElementById('rvh-1').checked || 
+                          document.getElementById('rvh-2').checked;
+
+            let htmlFragments = [];
+
+            if (isRAA) {
+                htmlFragments.push(`
+                    <div class="mb-3">
+                        <p><strong class="text-indigo-900 font-semibold">Right Atrial Abnormality (RAA):</strong> <span class="font-bold text-red-600">Present</span></p>
+                        <p class="text-blue-900 italic font-medium text-sm mt-1 pl-4 border-l-2 border-blue-200">
+                            Causes: Chronic lung disease (cor pulmonale), Tricuspid stenosis, Congenital heart disease (pulmonary stenosis, Tetralogy of Fallot), Primary pulmonary hypertension
+                        </p>
+                    </div>
+                `);
+            }
+
+            if (isLAA) {
+                let laaCauses = "Classically seen with mitral stenosis";
+                if (isLVH) {
+                    laaCauses += "<br>With LVH present, also consider: Systemic hypertension, Aortic stenosis, Mitral incompetence, Hypertrophic cardiomyopathy";
+                }
+                
+                if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
+                
+                htmlFragments.push(`
+                    <div class="mb-3">
+                        <p><strong class="text-indigo-900 font-semibold">Left Atrial Abnormality (LAA):</strong> <span class="font-bold text-red-600">Present</span></p>
+                        <p class="text-blue-900 italic font-medium text-sm mt-1 pl-4 border-l-2 border-blue-200">
+                            Causes: ${laaCauses}
+                        </p>
+                    </div>
+                `);
+            }
+
+            if (isRVH) {
+                if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
+                
+                htmlFragments.push(`
+                    <div class="mb-3">
+                        <p><strong class="text-indigo-900 font-semibold">Right Ventricular Hypertrophy (RVH):</strong> <span class="font-bold text-red-600">Present</span></p>
+                        <p class="text-blue-900 italic font-medium text-sm mt-1 pl-4 border-l-2 border-blue-200">
+                            Causes: Pulmonary hypertension, Mitral stenosis, Pulmonary embolism, Chronic lung disease (cor pulmonale), Congenital heart disease (e.g. Tetralogy of Fallot, pulmonary stenosis), Arrhythmogenic right ventricular cardiomyopathy
+                        </p>
+                    </div>
+                `);
+            }
+
+            if (isLVH) {
+                if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
+                
+                htmlFragments.push(`
+                    <div class="mb-3">
+                        <p><strong class="text-indigo-900 font-semibold">Left Ventricular Hypertrophy (LVH):</strong> <span class="font-bold text-red-600">Present</span></p>
+                        <p class="text-blue-900 italic font-medium text-sm mt-1 pl-4 border-l-2 border-blue-200">
+                            Causes: Hypertension (most common), Aortic stenosis, Aortic regurgitation, Mitral regurgitation, Coarctation of the aorta, Hypertrophic cardiomyopathy
+                        </p>
+                    </div>
+                `);
+            }
+
+            const targetDiv = document.getElementById('live-interpretation-6');
+            if (htmlFragments.length === 0) {
+                targetDiv.innerHTML = `<p class="text-slate-400 italic">Select observations above to view interpretations.</p>`;
+            } else {
+                targetDiv.innerHTML = htmlFragments.join("");
+            }
+
+            // Save to localStorage for report later
+            localStorage.setItem('ecg_step6_data', JSON.stringify({ htmlSummary: targetDiv.innerHTML }));
+        }
+
+        function openModal() {
+            const modal = document.getElementById('sokolow-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(event) {
+            // Close if event is undefined (button click) or if the background backdrop is clicked
+            if (!event || event.target.id === 'sokolow-modal') {
+                const modal = document.getElementById('sokolow-modal');
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
         }
     </script>
 </body>
