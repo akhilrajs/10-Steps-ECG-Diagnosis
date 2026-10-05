@@ -12,7 +12,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Very light, elegant slate */
+            background-color: #f8fafc;
             color: #334155;
         }
 
@@ -20,7 +20,6 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Liquid Glass (Glassmorphism) effect for the Glider */
         #glider {
             transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             background: rgba(255, 255, 255, 0.4);
@@ -30,7 +29,6 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.6);
         }
 
-        /* Snappy spring animation for the navigation buttons */
         .step-btn {
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
         }
@@ -41,7 +39,6 @@
             font-weight: 700;
         }
         
-        /* Hide scrollbar for the nav container on mobile */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -50,7 +47,6 @@
             scrollbar-width: none;
         }
 
-        /* Custom Range Slider Styling */
         input[type=range] {
             -webkit-appearance: none;
             width: 100%;
@@ -82,7 +78,6 @@
             outline: none;
         }
 
-        /* Checkbox styling enhancement */
         input[type=checkbox] {
             cursor: pointer;
             width: 1.25rem;
@@ -90,7 +85,6 @@
             accent-color: #4f46e5;
         }
         
-        /* Number input styling removal of arrows */
         input[type=number]::-webkit-inner-spin-button, 
         input[type=number]::-webkit-outer-spin-button { 
             -webkit-appearance: none; 
@@ -104,17 +98,13 @@
 <body class="min-h-screen flex flex-col items-center pt-10 pb-20 px-4 sm:px-6">
 
     <header class="w-full max-w-5xl mb-10 flex flex-col items-center">
-        <!-- Main Title -->
         <h1 class="text-4xl md:text-5xl font-playfair font-bold text-slate-800 mb-8 text-center tracking-tight drop-shadow-sm">
             10 Step ECG diagnosis
         </h1>
 
-        <!-- Scrollable Navigation Container -->
         <div class="w-full overflow-x-auto no-scrollbar py-6 px-2">
             <nav id="nav-container" class="relative flex items-center p-2 bg-slate-200/50 rounded-full shadow-inner mx-auto min-w-max border border-slate-200">
-                <!-- Liquid Glass Glider -->
                 <div id="glider" class="absolute top-2 w-12 h-12 rounded-full z-0 pointer-events-none"></div>
-                <!-- Tabs Container -->
                 <div id="tabs-container" class="relative z-10 flex gap-4 px-1">
                     <!-- Tabs will be injected via JS -->
                 </div>
@@ -124,7 +114,6 @@
 
     <main class="w-full max-w-4xl bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden min-h-[60vh]">
         
-        <!-- STEP 1 CONTAINER -->
         <div id="step-1-container" class="step-container p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
                 <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 1: Adequacy and Technicality</h2>
@@ -133,7 +122,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-step-1">
                 
-                <!-- Section 1: Patient Details -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> Patient details
@@ -156,7 +144,6 @@
                     </div>
                 </div>
 
-                <!-- Section 2: Calibration -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> Calibration
@@ -179,7 +166,6 @@
                     </div>
                 </div>
 
-                <!-- Section 3: Lead placement -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">3</span> Lead placement
@@ -196,7 +182,6 @@
                     </div>
                 </div>
 
-                <!-- Section 4: Artifacts -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">4</span> Artifacts
@@ -217,7 +202,6 @@
                     </div>
                 </div>
 
-                <!-- Section 5: All 12 leads present -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-1">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">5</span> All 12 leads present
@@ -238,7 +222,6 @@
                     </div>
                 </div>
 
-                <!-- Section 6: Check for lead reversal -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-1">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">6</span> Check for lead reversal
@@ -261,7 +244,6 @@
                 </div>
             </div>
 
-            <!-- Live Interpretation Box Step 1 -->
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
                 <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
@@ -273,7 +255,6 @@
             </div>
         </div>
 
-        <!-- STEP 2 CONTAINER -->
         <div id="step-2-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-8">
                 <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 2: Regularity</h2>
@@ -308,7 +289,6 @@
                 </div>
             </div>
 
-            <!-- Live Interpretation Box Step 2 -->
             <div class="mt-8 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
                 <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
@@ -320,7 +300,6 @@
             </div>
         </div>
 
-        <!-- STEP 3 CONTAINER -->
         <div id="step-3-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
                 <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 3: Rate</h2>
@@ -328,8 +307,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-step-3">
-                
-                <!-- Section 1: Rhythm Regular -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
                     <div>
                         <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
@@ -355,7 +332,6 @@
                     </div>
                 </div>
 
-                <!-- Section 2: Rhythm Irregular -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm h-full">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> Rhythm Irregular
@@ -369,7 +345,6 @@
                 </div>
             </div>
 
-            <!-- Live Interpretation Box Step 3 -->
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
                 <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
@@ -381,7 +356,6 @@
             </div>
         </div>
 
-        <!-- STEP 4 CONTAINER -->
         <div id="step-4-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
                 <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 4: Axis</h2>
@@ -389,8 +363,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-step-4">
-                
-                <!-- Section 1: Select Axis -->
                 <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-center">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> Select Axis
@@ -415,7 +387,6 @@
                     </div>
                 </div>
 
-                <!-- Section 2: Axis Guide Image -->
                 <div class="bg-indigo-50/30 rounded-2xl p-6 border border-indigo-50 shadow-sm h-full flex flex-col">
                     <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
                         <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> Axis Reference
@@ -425,12 +396,10 @@
                              alt="Axis reading guide" 
                              class="max-w-full h-auto mx-auto rounded-lg object-contain border border-slate-100"
                              onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-6 text-center text-slate-500 bg-slate-50 rounded-lg w-full\'><svg class=\'w-10 h-10 mx-auto text-slate-300 mb-2\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\'></path></svg><p class=\'text-sm\'>TIFF Image format might not be supported natively in your browser.</p></div>';">
-                        <p class="text-xs text-slate-400 mt-4 text-center">Note: TIFF formats may not render natively in all web browsers.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Live Interpretation Box Step 4 -->
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
                 <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
@@ -442,7 +411,104 @@
             </div>
         </div>
 
-        <!-- PLACEHOLDER FOR STEPS 5-11 -->
+        <div id="step-5-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
+            <div class="mb-10">
+                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 5: Intervals</h2>
+                <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Calculate the PR, QRS, QT intervals and QTc.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-step-5">
+                
+                <!-- Section 1: PR Interval -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> PR Interval
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Time in milliseconds (ms)</label>
+                                <input type="number" id="pr-ms" min="0" step="1" placeholder="e.g. 160" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm">
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="h-px bg-slate-200 flex-1"></div>
+                                <span class="text-slate-400 font-semibold text-xs tracking-wider">OR</span>
+                                <div class="h-px bg-slate-200 flex-1"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Number of small boxes</label>
+                                <input type="number" id="pr-sb" min="0" step="0.5" placeholder="e.g. 4" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: QRS Complex -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> QRS Complex
+                        </h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Time in milliseconds (ms)</label>
+                                <input type="number" id="qrs-ms" min="0" step="1" placeholder="e.g. 100" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm">
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="h-px bg-slate-200 flex-1"></div>
+                                <span class="text-slate-400 font-semibold text-xs tracking-wider">OR</span>
+                                <div class="h-px bg-slate-200 flex-1"></div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Number of small boxes</label>
+                                <input type="number" id="qrs-sb" min="0" step="0.5" placeholder="e.g. 2.5" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: QT and RR Intervals -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-2">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">3</span> QT & R-R Interval for QTc
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">QT Interval (Number of small boxes)</label>
+                            <input type="number" id="qt-sb" min="0" step="0.5" placeholder="e.g. 10" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">R-R Interval (Number of small boxes)</label>
+                            <input type="number" id="rr-sb" min="0" step="0.5" placeholder="e.g. 20" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-indigo-50/30 rounded-2xl p-6 border border-indigo-50 shadow-sm">
+                <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                    <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">4</span> How to calculate intervals (source : British Journel of Cardiology
+                </h3>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm overflow-hidden flex justify-center mt-2">
+                    <img src="https://raw.githubusercontent.com/akhilrajs/10-Steps-ECG-Diagnosis/main/intervals.png" 
+                         alt="Guide to calculating intervals" 
+                         class="max-w-full h-auto mx-auto rounded-lg object-contain border border-slate-100"
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-6 text-center text-slate-500 bg-slate-50 rounded-lg w-full\'><svg class=\'w-10 h-10 mx-auto text-slate-300 mb-2\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\'></path></svg><p class=\'text-sm\'>Image could not be loaded.</p></div>';">
+                </div>
+            </div>
+
+            <!-- Live Interpretation Box Step 5 -->
+            <div class="mt-8 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
+                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Step 5 Interpretation
+                </h3>
+                <div class="space-y-4 text-sm md:text-base text-slate-700" id="live-interpretation-5">
+                    <!-- Automatically populated by JS -->
+                </div>
+            </div>
+        </div>
+
         <div id="step-placeholder-container" class="step-container hidden p-10 flex flex-col items-center justify-center h-full min-h-[40vh] text-center">
             <svg class="w-16 h-16 text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             <h2 class="text-2xl font-playfair font-bold text-slate-700 mb-2" id="placeholder-title">Under Construction</h2>
@@ -453,13 +519,13 @@
 
     <script>
         const TOTAL_STEPS = 11;
-        let CURRENT_STEP = 1; // Default to step 1
+        let CURRENT_STEP = 1; 
         
         const tabsContainer = document.getElementById('tabs-container');
         const glider = document.getElementById('glider');
         const stepContainers = document.querySelectorAll('.step-container');
 
-        // --- Navigation Setup ---
+        // Navigation Setup
         for (let i = 1; i <= TOTAL_STEPS; i++) {
             const btn = document.createElement('button');
             btn.className = `step-btn font-playfair w-12 h-12 flex items-center justify-center rounded-full text-slate-500 text-xl cursor-pointer focus:outline-none`;
@@ -478,7 +544,6 @@
         function switchStep(stepNum) {
             CURRENT_STEP = stepNum;
             
-            // 1. Update active button styles
             document.querySelectorAll('.step-btn').forEach(btn => {
                 btn.classList.remove('step-active');
                 btn.removeAttribute('id');
@@ -488,17 +553,14 @@
                 }
             });
 
-            // 2. Move Glider
             updateGlider();
 
-            // 3. Toggle Visibility of Step Containers
             stepContainers.forEach(container => container.classList.add('hidden'));
             
             const targetContainer = document.getElementById(`step-${stepNum}-container`);
             if (targetContainer) {
                 targetContainer.classList.remove('hidden');
             } else {
-                // Show placeholder for unfinished steps
                 const placeholder = document.getElementById('step-placeholder-container');
                 placeholder.classList.remove('hidden');
                 document.getElementById('placeholder-title').innerText = `Step ${stepNum} Under Construction`;
@@ -512,7 +574,6 @@
             }
         }
 
-        // Window resize logic for glider
         window.addEventListener('resize', () => {
             glider.style.transition = 'none';
             updateGlider();
@@ -524,21 +585,19 @@
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(updateGlider, 100); 
             
-            // Auto-fill Current Date & Time for Step 1
             const now = new Date();
             const dateInput = document.getElementById('patient-date');
             const timeInput = document.getElementById('patient-time');
             dateInput.value = now.toISOString().split('T')[0];
             timeInput.value = now.toTimeString().slice(0, 5);
             
-            // Initial render for all interpretation boxes
             updateInterpretationStep1();
             updateInterpretationStep2();
             updateInterpretationStep3();
             updateInterpretationStep4();
+            updateInterpretationStep5();
         });
 
-        // --- Live Interpretation Logic: STEP 1 ---
         const pName = document.getElementById('patient-name');
         const pDate = document.getElementById('patient-date');
         const pTime = document.getElementById('patient-time');
@@ -599,7 +658,6 @@
                     <p><strong class="text-indigo-900 font-semibold">Lead reversal:</strong> ${reversalText}</p>
                 </div>
             `;
-
             document.getElementById('live-interpretation-1').innerHTML = interpHTML;
 
             const step1Data = {
@@ -610,7 +668,6 @@
             localStorage.setItem('ecg_step1_data', JSON.stringify(step1Data));
         }
 
-        // --- Live Interpretation Logic: STEP 2 ---
         const checkRegular = document.getElementById('reg-regular');
         const checkIrregular = document.getElementById('reg-irregular');
 
@@ -635,48 +692,31 @@
                 </p>
             `;
             document.getElementById('live-interpretation-2').innerHTML = interpHTML;
-            
-            const step2Data = {
-                regularity: status,
-                htmlSummary: interpHTML 
-            };
-            localStorage.setItem('ecg_step2_data', JSON.stringify(step2Data));
+            localStorage.setItem('ecg_step2_data', JSON.stringify({ regularity: status, htmlSummary: interpHTML }));
         }
 
-        // --- Live Interpretation Logic: STEP 3 ---
         const inputLarge = document.getElementById('rate-large');
         const inputSmall = document.getElementById('rate-small');
         const inputQrs = document.getElementById('rate-qrs');
 
-        // Mutually exclusive inputs: typing in one clears the others
         inputLarge.addEventListener('input', () => {
-            if(inputLarge.value !== "") {
-                inputSmall.value = "";
-                inputQrs.value = "";
-            }
+            if(inputLarge.value !== "") { inputSmall.value = ""; inputQrs.value = ""; }
             updateInterpretationStep3();
         });
 
         inputSmall.addEventListener('input', () => {
-            if(inputSmall.value !== "") {
-                inputLarge.value = "";
-                inputQrs.value = "";
-            }
+            if(inputSmall.value !== "") { inputLarge.value = ""; inputQrs.value = ""; }
             updateInterpretationStep3();
         });
 
         inputQrs.addEventListener('input', () => {
-            if(inputQrs.value !== "") {
-                inputLarge.value = "";
-                inputSmall.value = "";
-            }
+            if(inputQrs.value !== "") { inputLarge.value = ""; inputSmall.value = ""; }
             updateInterpretationStep3();
         });
 
         function updateInterpretationStep3() {
             let rate = null;
             let method = "";
-
             const valLarge = parseFloat(inputLarge.value);
             const valSmall = parseFloat(inputSmall.value);
             const valQrs = parseFloat(inputQrs.value);
@@ -727,28 +767,16 @@
                     <p class="text-xs text-slate-400 mt-2 md:col-span-2">${method}</p>
                 </div>
             `;
-
             targetDiv.innerHTML = interpHTML;
-
-            const step3Data = {
-                rate: rate,
-                diagnosis: diagnosis,
-                htmlSummary: interpHTML 
-            };
-            localStorage.setItem('ecg_step3_data', JSON.stringify(step3Data));
+            localStorage.setItem('ecg_step3_data', JSON.stringify({ rate, diagnosis, htmlSummary: interpHTML }));
         }
 
-        // --- Live Interpretation Logic: STEP 4 ---
         const axisCheckboxes = document.querySelectorAll('.axis-checkbox');
-        
         axisCheckboxes.forEach(cb => {
             cb.addEventListener('change', (e) => {
-                // Mutually exclusive behavior
                 if (e.target.checked) {
                     axisCheckboxes.forEach(other => {
-                        if (other !== e.target) {
-                            other.checked = false;
-                        }
+                        if (other !== e.target) other.checked = false;
                     });
                 }
                 updateInterpretationStep4();
@@ -757,7 +785,6 @@
 
         function updateInterpretationStep4() {
             let status = "Pending input";
-            
             if (document.getElementById('axis-normal').checked) status = "Normal axis";
             else if (document.getElementById('axis-rad').checked) status = "Right axis deviation";
             else if (document.getElementById('axis-lad').checked) status = "Left axis deviation";
@@ -768,16 +795,138 @@
                    <span class="${status === 'Pending input' ? 'text-slate-400' : 'text-slate-800 font-medium'}">${status}</span>
                 </p>
             `;
-            
             document.getElementById('live-interpretation-4').innerHTML = interpHTML;
-            
-            const step4Data = {
-                axis: status,
-                htmlSummary: interpHTML 
-            };
-            localStorage.setItem('ecg_step4_data', JSON.stringify(step4Data));
+            localStorage.setItem('ecg_step4_data', JSON.stringify({ axis: status, htmlSummary: interpHTML }));
         }
 
+        const prMs = document.getElementById('pr-ms');
+        const prSb = document.getElementById('pr-sb');
+        const qrsMs = document.getElementById('qrs-ms');
+        const qrsSb = document.getElementById('qrs-sb');
+        const qtSb = document.getElementById('qt-sb');
+        const rrSb = document.getElementById('rr-sb');
+
+        // Mutually exclusive behavior for PR inputs
+        prMs.addEventListener('input', () => { if(prMs.value !== "") prSb.value = ""; updateInterpretationStep5(); });
+        prSb.addEventListener('input', () => { if(prSb.value !== "") prMs.value = ""; updateInterpretationStep5(); });
+        
+        // Mutually exclusive behavior for QRS inputs
+        qrsMs.addEventListener('input', () => { if(qrsMs.value !== "") qrsSb.value = ""; updateInterpretationStep5(); });
+        qrsSb.addEventListener('input', () => { if(qrsSb.value !== "") qrsMs.value = ""; updateInterpretationStep5(); });
+
+        qtSb.addEventListener('input', updateInterpretationStep5);
+        rrSb.addEventListener('input', updateInterpretationStep5);
+
+        function updateInterpretationStep5() {
+            let htmlFragments = [];
+
+            // 1. PR Interval Calculation
+            let prValueMs = null;
+            if (prMs.value !== "") prValueMs = parseFloat(prMs.value);
+            else if (prSb.value !== "") prValueMs = parseFloat(prSb.value) * 40; // 1 small box = 0.04s = 40ms
+
+            if (prValueMs !== null && !isNaN(prValueMs)) {
+                let prDiagnosis = "";
+                let prCauses = "";
+                let prClass = "text-slate-800";
+                
+                if (prValueMs < 120) {
+                    prDiagnosis = "Short PR";
+                    prClass = "text-blue-600";
+                    prCauses = "Pre-excitation syndromes, Low atrial/junctional ectopic rhythm";
+                } else if (prValueMs > 200) {
+                    prDiagnosis = "Prolonged PR";
+                    prClass = "text-red-600";
+                    prCauses = "First-degree heart block";
+                } else {
+                    prDiagnosis = "Normal PR (0.12 - 0.20 s)";
+                    prClass = "text-emerald-600";
+                }
+
+                htmlFragments.push(`
+                    <div class="mb-3">
+                        <p><strong class="text-indigo-900 font-semibold">PR Interval:</strong> ${prValueMs} ms <span class="mx-2 text-slate-300">|</span> <span class="font-bold ${prClass}">${prDiagnosis}</span></p>
+                        ${prCauses ? `<p class="text-blue-900 italic font-medium text-sm mt-1 pl-4 border-l-2 border-blue-200">${prCauses}</p>` : ''}
+                    </div>
+                `);
+            }
+
+            // 2. QRS Complex Calculation
+            let qrsValueMs = null;
+            if (qrsMs.value !== "") qrsValueMs = parseFloat(qrsMs.value);
+            else if (qrsSb.value !== "") qrsValueMs = parseFloat(qrsSb.value) * 40;
+
+            if (qrsValueMs !== null && !isNaN(qrsValueMs)) {
+                let qrsDiagnosis = "";
+                let qrsCauses = "";
+                let qrsClass = "text-slate-800";
+                
+                if (qrsValueMs < 120) {
+                    qrsDiagnosis = "Narrow base QRS complexes";
+                    qrsClass = "text-emerald-600";
+                } else {
+                    qrsDiagnosis = "Wide based QRS complexes";
+                    qrsClass = "text-red-600";
+                    qrsCauses = "Ventricular ectopics/ventricular tachycardia, Hyperkalemia, Bundle branch blocks, Ventricular pacing, Toxins, Ventricular hypertrophy";
+                }
+
+                if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
+                
+                htmlFragments.push(`
+                    <div class="mb-3">
+                        <p><strong class="text-indigo-900 font-semibold">QRS Complex:</strong> ${qrsValueMs} ms <span class="mx-2 text-slate-300">|</span> <span class="font-bold ${qrsClass}">${qrsDiagnosis}</span></p>
+                        ${qrsCauses ? `<p class="text-blue-900 italic font-medium text-sm mt-1 pl-4 border-l-2 border-blue-200">Causes: ${qrsCauses}</p>` : ''}
+                    </div>
+                `);
+            }
+
+            // 3. QTc Calculation (Bazett's Formula)
+            let qtSbVal = parseFloat(qtSb.value);
+            let rrSbVal = parseFloat(rrSb.value);
+
+            if (!isNaN(qtSbVal) && !isNaN(rrSbVal) && rrSbVal > 0) {
+                let qtMs = qtSbVal * 40;
+                let rrSec = rrSbVal * 0.04;
+                let qtc = Math.round(qtMs / Math.sqrt(rrSec));
+
+                let qtcDiagnosis = "";
+                let qtcCauses = "";
+                let qtcClass = "text-slate-800";
+
+                if (qtc < 350) {
+                    qtcDiagnosis = "Short QTc";
+                    qtcClass = "text-blue-600";
+                    qtcCauses = "Digoxin effect, Hypercalcemia, Congenital short QT syndrome";
+                } else if (qtc > 450) {
+                    qtcDiagnosis = "Prolonged QTc";
+                    qtcClass = "text-red-600";
+                    qtcCauses = "Drugs, Hypokalemia, Hypocalcemia, Hypomagnesemia, Infections, Myocarditis, Ischemia, Raised intracranial pressure, Congenital long QT interval";
+                } else {
+                    qtcDiagnosis = "Normal QTc (350 - 450 ms)";
+                    qtcClass = "text-emerald-600";
+                }
+
+                if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
+
+                htmlFragments.push(`
+                    <div class="mb-1">
+                        <p><strong class="text-indigo-900 font-semibold">QTc (Bazett's):</strong> ${qtc} ms <span class="mx-2 text-slate-300">|</span> <span class="font-bold ${qtcClass}">${qtcDiagnosis}</span></p>
+                        ${qtcCauses ? `<p class="text-blue-900 italic font-medium text-sm mt-1 pl-4 border-l-2 border-blue-200">Causes: ${qtcCauses}</p>` : ''}
+                    </div>
+                `);
+            }
+
+            const targetDiv = document.getElementById('live-interpretation-5');
+            
+            if (htmlFragments.length === 0) {
+                targetDiv.innerHTML = `<p class="text-slate-400 italic">Enter values above to calculate intervals.</p>`;
+            } else {
+                targetDiv.innerHTML = htmlFragments.join("");
+            }
+
+            // Save to localStorage for report later
+            localStorage.setItem('ecg_step5_data', JSON.stringify({ htmlSummary: targetDiv.innerHTML }));
+        }
     </script>
 </body>
 </html>
