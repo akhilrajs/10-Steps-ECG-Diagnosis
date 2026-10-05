@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECG Diagnosis Tool</title>
+    <title>ECG Diagnosis Tool - Step 1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,46 +12,35 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #fafafa; /* Very light neutral background */
-            color: #333;
+            background-color: #f8fafc; /* Very light, elegant slate */
+            color: #334155;
         }
 
         .font-playfair {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Glider smooth transition with Liquid Glass (Glassmorphism) effect */
+        /* Liquid Glass (Glassmorphism) effect for the Glider */
         #glider {
             transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.6);
         }
 
-        /* Snappy spring animation for the buttons */
+        /* Snappy spring animation for the navigation buttons */
         .step-btn {
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
         }
 
-        /* Enlarge effect active class */
         .step-active {
             transform: scale(1.35);
             color: #0f172a !important; 
             font-weight: 700;
         }
         
-        /* Content fade animation */
-        .fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         /* Hide scrollbar for the nav container on mobile */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -61,7 +50,7 @@
             scrollbar-width: none;
         }
 
-        /* Range Slider Styling */
+        /* Custom Range Slider Styling */
         input[type=range] {
             -webkit-appearance: none;
             width: 100%;
@@ -69,28 +58,37 @@
         }
         input[type=range]::-webkit-slider-thumb {
             -webkit-appearance: none;
-            height: 20px;
-            width: 20px;
+            height: 24px;
+            width: 24px;
             border-radius: 50%;
             background: #ffffff;
-            border: 2px solid #64748b;
+            border: 2px solid #475569;
             cursor: pointer;
-            margin-top: -8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: -10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            transition: transform 0.1s;
+        }
+        input[type=range]::-webkit-slider-thumb:active {
+            transform: scale(1.1);
         }
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%;
             height: 6px;
             cursor: pointer;
-            background: #e2e8f0;
+            background: #cbd5e1;
             border-radius: 4px;
         }
         input[type=range]:focus {
             outline: none;
         }
+
+        /* Checkbox styling enhancement */
+        input[type=checkbox] {
+            cursor: pointer;
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center pt-10 pb-16 px-4 sm:px-6">
+<body class="min-h-screen flex flex-col items-center pt-10 pb-20 px-4 sm:px-6">
 
     <header class="w-full max-w-5xl mb-10 flex flex-col items-center">
         <!-- Main Title -->
@@ -101,240 +99,314 @@
         <!-- Scrollable Navigation Container -->
         <div class="w-full overflow-x-auto no-scrollbar py-6 px-2">
             <nav id="nav-container" class="relative flex items-center p-2 bg-slate-200/50 rounded-full shadow-inner mx-auto min-w-max border border-slate-200">
-                
                 <!-- Liquid Glass Glider -->
                 <div id="glider" class="absolute top-2 w-12 h-12 rounded-full z-0 pointer-events-none"></div>
-
+                <!-- Tabs Container -->
                 <div id="tabs-container" class="relative z-10 flex gap-4 px-1">
-                    <!-- Tabs injected by JS -->
+                    <!-- Tabs will be injected via JS -->
                 </div>
             </nav>
         </div>
     </header>
 
-    <main class="w-full max-w-4xl bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-        <div id="content-area" class="p-6 sm:p-8 md:p-10 min-h-[500px]">
-            <!-- Dynamic Content -->
+    <main class="w-full max-w-4xl bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+        <div class="p-6 sm:p-8 md:p-10" id="diagnosis-form">
+            <div class="mb-10">
+                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 1: Adequacy and Technicality</h2>
+                <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Before interpreting any ECG, quickly check:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Section 1: Patient Details -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> Patient details
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-1">Name / ID</label>
+                            <input type="text" id="patient-name" placeholder="e.g. Narendra / ID-1234" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 outline-none transition bg-white shadow-sm">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Date</label>
+                                <input type="date" id="patient-date" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 outline-none transition bg-white shadow-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-1">Time</label>
+                                <input type="time" id="patient-time" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 outline-none transition bg-white shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Calibration -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> Calibration
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="block text-sm font-medium text-slate-600">Paper speed</label>
+                                <span id="speed-val" class="text-lg font-playfair font-bold text-slate-700 bg-white border border-slate-200 px-3 py-1 rounded-lg shadow-sm">25 mm/sec</span>
+                            </div>
+                            <input type="range" id="speed-slider" min="5" max="50" step="5" value="25">
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="block text-sm font-medium text-slate-600">Amplitude</label>
+                                <span id="amp-val" class="text-lg font-playfair font-bold text-slate-700 bg-white border border-slate-200 px-3 py-1 rounded-lg shadow-sm">10 mm/mV</span>
+                            </div>
+                            <input type="range" id="amp-slider" min="5" max="25" step="1" value="10">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Lead placement -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">3</span> Lead placement
+                    </h3>
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-center gap-3 group">
+                            <input type="checkbox" id="lp-limb" class="w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Limb leads correctly placed</span>
+                        </label>
+                        <label class="flex items-center gap-3 group">
+                            <input type="checkbox" id="lp-chest" class="w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Chest leads V1–V6 correctly positioned</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Section 4: Artifacts -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">4</span> Artifacts
+                    </h3>
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-center gap-3 group">
+                            <input type="checkbox" id="art-mov" class="w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Excessive movement artifact</span>
+                        </label>
+                        <label class="flex items-center gap-3 group">
+                            <input type="checkbox" id="art-elec" class="w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Electrical interference</span>
+                        </label>
+                        <label class="flex items-center gap-3 group">
+                            <input type="checkbox" id="art-loose" class="w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">Loose/disconnected leads</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Section 5: All 12 leads present -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-1">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">5</span> All 12 leads present
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <label class="flex items-center gap-3 group">
+                            <input type="checkbox" id="leads-1" class="w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">I, II, III</span>
+                        </label>
+                        <label class="flex items-center gap-3 group">
+                            <input type="checkbox" id="leads-2" class="w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">aVR, aVL, aVF</span>
+                        </label>
+                        <label class="flex items-center gap-3 group sm:col-span-2">
+                            <input type="checkbox" id="leads-3" class="w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 transition">V1–V6</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Section 6: Check for lead reversal -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-1">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">6</span> Check for lead reversal
+                    </h3>
+                    <div class="space-y-4">
+                        <p class="text-sm text-slate-600 leading-relaxed bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+                            In normal sinus rhythm, aVR should generally have negative P, QRS and T. <br>
+                            <span class="text-amber-600 font-medium">Unexpected positive P/QRS in aVR</span> → suspect limb-lead reversal.
+                        </p>
+                        
+                        <div class="pt-2">
+                            <label class="block text-sm font-medium text-slate-700 mb-2">Select aVR Status:</label>
+                            <select id="reversal-select" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 outline-none transition bg-white text-slate-700 cursor-pointer shadow-sm">
+                                <option value="" disabled selected>Select observation...</option>
+                                <option value="normal">Normal (Negative P, QRS, T)</option>
+                                <option value="reversed">Reversed (Positive P/QRS)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Interpretation Box -->
+            <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
+                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Step 1 Interpretation
+                </h3>
+                <div class="space-y-3 text-sm md:text-base text-slate-700" id="live-interpretation">
+                    <!-- Automatically populated by JS -->
+                </div>
+            </div>
         </div>
     </main>
 
     <script>
+        // --- Navigation Setup ---
         const TOTAL_STEPS = 11;
+        const CURRENT_STEP = 1;
         const tabsContainer = document.getElementById('tabs-container');
         const glider = document.getElementById('glider');
-        const contentArea = document.getElementById('content-area');
 
         // Generate 11 tabs dynamically
         for (let i = 1; i <= TOTAL_STEPS; i++) {
             const btn = document.createElement('button');
-            // Add font-playfair to numbers as requested
             btn.className = `step-btn font-playfair w-12 h-12 flex items-center justify-center rounded-full text-slate-500 text-xl cursor-pointer focus:outline-none`;
-            btn.setAttribute('data-step', i);
             btn.innerText = i;
+            
+            if (i === CURRENT_STEP) {
+                btn.classList.add('step-active');
+                btn.id = 'active-tab';
+            } else {
+                // Clicking other tabs navigates to corresponding pages
+                btn.onclick = () => {
+                    window.location.href = `page_${i}.html`;
+                };
+            }
             tabsContainer.appendChild(btn);
         }
 
-        const buttons = document.querySelectorAll('.step-btn');
-
-        function getStep1HTML() {
-            return `
-                <div class="mb-10">
-                    <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 1: Adequacy and Technicality</h2>
-                    <p class="text-slate-500 font-medium border-l-4 border-slate-300 pl-4 py-1">Before interpreting any ECG, quickly check:</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    
-                    <!-- Section 1: Patient Details -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span> Patient details
-                        </h3>
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-sm font-medium text-slate-600 mb-1">Name / ID</label>
-                                <input type="text" placeholder="Enter Patient Name or ID" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition bg-white">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-slate-600 mb-1">Date & time of ECG</label>
-                                <input type="datetime-local" id="ecg-datetime" class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition bg-white">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Section 2: Calibration -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span> Calibration
-                        </h3>
-                        <div class="space-y-6">
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <label class="block text-sm font-medium text-slate-600">Paper speed</label>
-                                    <span id="speed-val" class="text-sm font-semibold text-slate-700 bg-white border border-slate-200 px-2 py-1 rounded">25 mm/sec</span>
-                                </div>
-                                <input type="range" min="5" max="50" step="5" value="25" oninput="document.getElementById('speed-val').innerText = this.value + ' mm/sec'">
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center mb-2">
-                                    <label class="block text-sm font-medium text-slate-600">Amplitude</label>
-                                    <span id="amp-val" class="text-sm font-semibold text-slate-700 bg-white border border-slate-200 px-2 py-1 rounded">10 mm/mV</span>
-                                </div>
-                                <input type="range" min="5" max="25" step="1" value="10" oninput="document.getElementById('amp-val').innerText = this.value + ' mm/mV'">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Section 3: Lead placement -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span> Lead placement
-                        </h3>
-                        <div class="space-y-3">
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
-                                <span class="text-slate-700">Limb leads correctly placed</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
-                                <span class="text-slate-700">Chest leads V1–V6 correctly positioned</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Section 4: Artifacts -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span> Artifacts
-                        </h3>
-                        <div class="space-y-3">
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
-                                <span class="text-slate-700">Excessive movement artifact</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
-                                <span class="text-slate-700">Electrical interference</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
-                                <span class="text-slate-700">Loose/disconnected leads</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Section 5: All 12 leads present -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 md:col-span-1">
-                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">5</span> All 12 leads present
-                        </h3>
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
-                                <span class="text-slate-700">I, II, III</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer">
-                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
-                                <span class="text-slate-700">aVR, aVL, aVF</span>
-                            </label>
-                            <label class="flex items-center gap-3 cursor-pointer col-span-2">
-                                <input type="checkbox" class="w-5 h-5 accent-slate-700 rounded border-gray-300">
-                                <span class="text-slate-700">V1–V6</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Section 6: Check for lead reversal -->
-                    <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 md:col-span-1">
-                        <h3 class="text-lg font-semibold text-slate-700 mb-4 flex items-center gap-2">
-                            <span class="bg-slate-200 text-slate-600 w-6 h-6 rounded-full flex items-center justify-center text-xs">6</span> Check for lead reversal
-                        </h3>
-                        <div class="space-y-4">
-                            <p class="text-sm text-slate-600 leading-relaxed bg-white p-3 rounded-lg border border-slate-100">
-                                In normal sinus rhythm, aVR should generally have negative P, QRS and T. <br><br>
-                                <strong>Unexpected positive P/QRS in aVR</strong> → suspect limb-lead reversal, especially RA–LA reversal.
-                            </p>
-                            
-                            <div class="pt-2">
-                                <label class="block text-sm font-medium text-slate-700 mb-2">Select aVR Status:</label>
-                                <select class="w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-slate-400 focus:border-slate-400 outline-none transition bg-white text-slate-700 cursor-pointer">
-                                    <option value="" disabled selected>Select observation...</option>
-                                    <option value="negative">aVR negative</option>
-                                    <option value="positive">aVR positive</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function getPlaceholderHTML(step) {
-            return `
-                <div class="flex flex-col items-center justify-center h-full py-24 text-center">
-                    <div class="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-6 shadow-sm border border-slate-100">
-                        <span class="text-3xl font-playfair font-bold text-slate-300">${step}</span>
-                    </div>
-                    <h2 class="text-3xl font-playfair font-bold text-slate-700 mb-4">Step ${step}</h2>
-                    <p class="text-slate-500 max-w-sm">Detailed parameters and inputs for step ${step} of the diagnostic process will be populated here.</p>
-                </div>
-            `;
-        }
-
-        function updateContent(stepNum) {
-            contentArea.classList.remove('fade-in');
-            void contentArea.offsetWidth; // Trigger reflow for animation restart
-            
-            if (parseInt(stepNum) === 1) {
-                contentArea.innerHTML = getStep1HTML();
-                
-                // Auto-fill current date and time
-                const dtInput = document.getElementById('ecg-datetime');
-                if (dtInput) {
-                    const now = new Date();
-                    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-                    dtInput.value = now.toISOString().slice(0, 16);
-                }
-            } else {
-                contentArea.innerHTML = getPlaceholderHTML(stepNum);
-            }
-            
-            contentArea.classList.add('fade-in');
-        }
-
-        function selectStep(btn) {
-            const btnLeft = btn.offsetLeft;
-            glider.style.left = `${btnLeft}px`;
-
-            buttons.forEach(b => b.classList.remove('step-active'));
-            btn.classList.add('step-active');
-
-            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            updateContent(btn.getAttribute('data-step'));
-        }
-
-        buttons.forEach(btn => {
-            btn.addEventListener('click', () => selectStep(btn));
-        });
-
-        // Initialize First Tab on Load
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                selectStep(buttons[0]);
-            }, 100); // slight delay ensures DOM is fully painted for accurate offset calculation
-        });
-
-        // Snap glider into correct place on resize
-        window.addEventListener('resize', () => {
-            const activeBtn = document.querySelector('.step-active');
+        // Initialize Glider Position
+        function updateGlider() {
+            const activeBtn = document.getElementById('active-tab');
             if (activeBtn) {
-                glider.style.transition = 'none';
                 glider.style.left = `${activeBtn.offsetLeft}px`;
-                setTimeout(() => {
-                    glider.style.transition = 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-                }, 50);
             }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(updateGlider, 100); 
+            
+            // Auto-fill Current Date & Time
+            const now = new Date();
+            const dateInput = document.getElementById('patient-date');
+            const timeInput = document.getElementById('patient-time');
+            
+            // Format YYYY-MM-DD
+            dateInput.value = now.toISOString().split('T')[0];
+            // Format HH:MM
+            timeInput.value = now.toTimeString().slice(0, 5);
+            
+            updateInterpretation();
         });
+
+        window.addEventListener('resize', () => {
+            glider.style.transition = 'none';
+            updateGlider();
+            setTimeout(() => {
+                glider.style.transition = 'left 0.4s cubic-bezier(0.4, 0, 0.2, 1), width 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+            }, 50);
+        });
+
+        // --- Live Interpretation Logic ---
+        
+        // Element references
+        const pName = document.getElementById('patient-name');
+        const pDate = document.getElementById('patient-date');
+        const pTime = document.getElementById('patient-time');
+        const speedSlider = document.getElementById('speed-slider');
+        const ampSlider = document.getElementById('amp-slider');
+        const speedVal = document.getElementById('speed-val');
+        const ampVal = document.getElementById('amp-val');
+        
+        const lpLimb = document.getElementById('lp-limb');
+        const lpChest = document.getElementById('lp-chest');
+        
+        const artMov = document.getElementById('art-mov');
+        const artElec = document.getElementById('art-elec');
+        const artLoose = document.getElementById('art-loose');
+        
+        const leads1 = document.getElementById('leads-1');
+        const leads2 = document.getElementById('leads-2');
+        const leads3 = document.getElementById('leads-3');
+        
+        const reversalSelect = document.getElementById('reversal-select');
+
+        // Form change listener (Event Delegation)
+        document.getElementById('diagnosis-form').addEventListener('input', updateInterpretation);
+        document.getElementById('diagnosis-form').addEventListener('change', updateInterpretation);
+
+        function updateInterpretation() {
+            // Update slider display values
+            speedVal.innerText = speedSlider.value + ' mm/sec';
+            ampVal.innerText = ampSlider.value + ' mm/mV';
+
+            // 1. Patient Data
+            const name = pName.value.trim() || '[No Name/ID]';
+            const dateTime = `${pDate.value} ${pTime.value}`;
+
+            // 2. Calibration
+            const speed = speedSlider.value;
+            const amp = ampSlider.value;
+
+            // 3. Lead Placement
+            const placementCorrect = (lpLimb.checked && lpChest.checked) ? "Correct" : "Incorrect";
+
+            // 4. Artifacts
+            let activeArtifacts = [];
+            if(artMov.checked) activeArtifacts.push("Excessive movement");
+            if(artElec.checked) activeArtifacts.push("Electrical interference");
+            if(artLoose.checked) activeArtifacts.push("Loose/disconnected leads");
+            const artifactsText = activeArtifacts.length > 0 ? `Present (${activeArtifacts.join(", ")})` : "Nil";
+
+            // 5. All 12 Leads
+            let missingLeads = [];
+            if(!leads1.checked) missingLeads.push("I, II, III");
+            if(!leads2.checked) missingLeads.push("aVR, aVL, aVF");
+            if(!leads3.checked) missingLeads.push("V1–V6");
+            const leadsText = missingLeads.length === 0 ? "All present" : `Not placed (${missingLeads.join("; ")})`;
+
+            // 6. Lead Reversal
+            let reversalText = "Pending input";
+            if (reversalSelect.value === "normal") reversalText = "Nil";
+            if (reversalSelect.value === "reversed") reversalText = "Suspected/Present (Positive P/QRS in aVR)";
+
+            // Construct Interpretation HTML
+            const interpHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
+                    <p><strong class="text-indigo-900 font-semibold">Patient:</strong> ${name} / <span class="text-slate-500">${dateTime}</span></p>
+                    <p><strong class="text-indigo-900 font-semibold">Calibration:</strong> Speed: ${speed} mm/sec, Amplitude: ${amp} mm/mV</p>
+                    <p><strong class="text-indigo-900 font-semibold">Lead placement:</strong> <span class="${placementCorrect === 'Correct' ? 'text-green-600' : 'text-red-500'} font-medium">${placementCorrect}</span></p>
+                    <p><strong class="text-indigo-900 font-semibold">Artifacts:</strong> ${artifactsText}</p>
+                    <p><strong class="text-indigo-900 font-semibold">All 12 leads present:</strong> ${leadsText}</p>
+                    <p><strong class="text-indigo-900 font-semibold">Lead reversal:</strong> ${reversalText}</p>
+                </div>
+            `;
+
+            document.getElementById('live-interpretation').innerHTML = interpHTML;
+
+            // Save to LocalStorage for page 11 (Report page)
+            const step1Data = {
+                patient: name,
+                datetime: dateTime,
+                speed: speed,
+                amplitude: amp,
+                leadPlacement: placementCorrect,
+                artifacts: artifactsText,
+                leadsPresent: leadsText,
+                leadReversal: reversalText,
+                htmlSummary: interpHTML // Easy insertion on page 11
+            };
+            localStorage.setItem('ecg_step1_data', JSON.stringify(step1Data));
+        }
     </script>
 </body>
 </html>
