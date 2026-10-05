@@ -89,6 +89,16 @@
             height: 1.25rem;
             accent-color: #4f46e5;
         }
+        
+        /* Number input styling removal of arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center pt-10 pb-20 px-4 sm:px-6">
@@ -310,7 +320,68 @@
             </div>
         </div>
 
-        <!-- PLACEHOLDER FOR STEPS 3-11 -->
+        <!-- STEP 3 CONTAINER -->
+        <div id="step-3-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
+            <div class="mb-10">
+                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 3: Rate</h2>
+                <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Calculate the heart rate based on ECG boxes.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-step-3">
+                
+                <!-- Section 1: Rhythm Regular -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> Rhythm Regular
+                        </h3>
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-2">Number of large boxes between R-R interval</label>
+                                <input type="number" id="rate-large" min="0" step="0.1" placeholder="e.g. 4" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 outline-none transition bg-white shadow-sm text-lg">
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="h-px bg-slate-200 flex-1"></div>
+                                <span class="text-slate-400 font-semibold text-xs tracking-wider">OR</span>
+                                <div class="h-px bg-slate-200 flex-1"></div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-slate-600 mb-2">Number of small boxes between R-R interval</label>
+                                <input type="number" id="rate-small" min="0" step="1" placeholder="e.g. 20" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 outline-none transition bg-white shadow-sm text-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Rhythm Irregular -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm h-full">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> Rhythm Irregular
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-600 mb-2">Number of QRS complexes in 30 large boxes <br><span class="text-xs text-slate-400">(6 second period)</span></label>
+                            <input type="number" id="rate-qrs" min="0" step="1" placeholder="e.g. 7" class="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400 outline-none transition bg-white shadow-sm text-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Interpretation Box Step 3 -->
+            <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
+                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Step 3 Interpretation
+                </h3>
+                <div class="space-y-3 text-sm md:text-base text-slate-700" id="live-interpretation-3">
+                    <!-- Automatically populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PLACEHOLDER FOR STEPS 4-11 -->
         <div id="step-placeholder-container" class="step-container hidden p-10 flex flex-col items-center justify-center h-full min-h-[40vh] text-center">
             <svg class="w-16 h-16 text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             <h2 class="text-2xl font-playfair font-bold text-slate-700 mb-2" id="placeholder-title">Under Construction</h2>
@@ -321,7 +392,7 @@
 
     <script>
         const TOTAL_STEPS = 11;
-        let CURRENT_STEP = 1;
+        let CURRENT_STEP = 1; // Default to step 1
         
         const tabsContainer = document.getElementById('tabs-container');
         const glider = document.getElementById('glider');
@@ -399,14 +470,13 @@
             dateInput.value = now.toISOString().split('T')[0];
             timeInput.value = now.toTimeString().slice(0, 5);
             
-            // Initial render for both interpretation boxes
+            // Initial render for all interpretation boxes
             updateInterpretationStep1();
             updateInterpretationStep2();
+            updateInterpretationStep3();
         });
 
         // --- Live Interpretation Logic: STEP 1 ---
-        
-        // Element references Step 1
         const pName = document.getElementById('patient-name');
         const pDate = document.getElementById('patient-date');
         const pTime = document.getElementById('patient-time');
@@ -428,7 +498,6 @@
         
         const reversalSelect = document.getElementById('reversal-select');
 
-        // Form change listener for Step 1
         document.getElementById('form-step-1').addEventListener('input', updateInterpretationStep1);
         document.getElementById('form-step-1').addEventListener('change', updateInterpretationStep1);
 
@@ -480,7 +549,6 @@
         }
 
         // --- Live Interpretation Logic: STEP 2 ---
-        
         const checkRegular = document.getElementById('reg-regular');
         const checkIrregular = document.getElementById('reg-irregular');
 
@@ -512,6 +580,103 @@
             };
             localStorage.setItem('ecg_step2_data', JSON.stringify(step2Data));
         }
+
+        // --- Live Interpretation Logic: STEP 3 ---
+        const inputLarge = document.getElementById('rate-large');
+        const inputSmall = document.getElementById('rate-small');
+        const inputQrs = document.getElementById('rate-qrs');
+
+        // Mutually exclusive inputs: typing in one clears the others
+        inputLarge.addEventListener('input', () => {
+            if(inputLarge.value !== "") {
+                inputSmall.value = "";
+                inputQrs.value = "";
+            }
+            updateInterpretationStep3();
+        });
+
+        inputSmall.addEventListener('input', () => {
+            if(inputSmall.value !== "") {
+                inputLarge.value = "";
+                inputQrs.value = "";
+            }
+            updateInterpretationStep3();
+        });
+
+        inputQrs.addEventListener('input', () => {
+            if(inputQrs.value !== "") {
+                inputLarge.value = "";
+                inputSmall.value = "";
+            }
+            updateInterpretationStep3();
+        });
+
+        function updateInterpretationStep3() {
+            let rate = null;
+            let method = "";
+
+            const valLarge = parseFloat(inputLarge.value);
+            const valSmall = parseFloat(inputSmall.value);
+            const valQrs = parseFloat(inputQrs.value);
+
+            if (!isNaN(valLarge) && valLarge > 0) {
+                rate = Math.round(300 / valLarge);
+                method = "Calculated via Large Boxes (300 / n)";
+            } else if (!isNaN(valSmall) && valSmall > 0) {
+                rate = Math.round(1500 / valSmall);
+                method = "Calculated via Small Boxes (1500 / n)";
+            } else if (!isNaN(valQrs) && valQrs >= 0) {
+                rate = valQrs * 10;
+                method = "Calculated via QRS count in 6s (n × 10)";
+            }
+
+            const targetDiv = document.getElementById('live-interpretation-3');
+
+            if (rate === null) {
+                targetDiv.innerHTML = `<p class="text-slate-400 italic">Enter a value above to calculate heart rate.</p>`;
+                localStorage.setItem('ecg_step3_data', JSON.stringify(null));
+                return;
+            }
+
+            let diagnosis = "";
+            let colorClass = "";
+
+            if (rate < 60) {
+                diagnosis = "Bradycardia (<60 bpm)";
+                colorClass = "text-blue-600";
+            } else if (rate > 100) {
+                diagnosis = "Tachycardia (>100 bpm)";
+                colorClass = "text-red-600";
+            } else {
+                diagnosis = "Normal Rate (60-100 bpm)";
+                colorClass = "text-emerald-600";
+            }
+
+            const interpHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                    <p class="flex flex-col">
+                        <strong class="text-indigo-900 font-semibold mb-1">Rate:</strong> 
+                        <span class="text-3xl font-bold text-slate-800">${rate} <span class="text-lg text-slate-500 font-medium">bpm</span></span> 
+                    </p>
+                    <p class="flex flex-col justify-center">
+                        <strong class="text-indigo-900 font-semibold mb-1">Diagnosis:</strong> 
+                        <span class="${colorClass} font-bold text-lg bg-slate-50 px-3 py-1 rounded-lg border border-slate-100 inline-block w-max shadow-sm">${diagnosis}</span>
+                    </p>
+                    <p class="text-xs text-slate-400 mt-2 md:col-span-2">${method}</p>
+                </div>
+            `;
+
+            targetDiv.innerHTML = interpHTML;
+
+            // Save to LocalStorage for page 11 (Report page)
+            const step3Data = {
+                rate: rate,
+                diagnosis: diagnosis,
+                htmlSummary: interpHTML 
+            };
+            localStorage.setItem('ecg_step3_data', JSON.stringify(step3Data));
+        }
+
     </script>
 </body>
 </html>
