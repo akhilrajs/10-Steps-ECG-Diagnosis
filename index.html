@@ -304,7 +304,7 @@
                     <img src="https://raw.githubusercontent.com/akhilrajs/10-Steps-ECG-Diagnosis/refs/heads/main/Regularity.tiff" 
                          alt="Guide to reading ECG regularity" 
                          class="max-w-full h-auto rounded-lg object-contain"
-                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-8 text-center text-slate-500 bg-slate-50 rounded-lg w-full\'><svg class=\'w-12 h-12 mx-auto text-slate-300 mb-3\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\'></path></svg>Image format might not be supported in your browser. Please check source link.</div>';">
+                         onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-8 text-center text-slate-500 bg-slate-50 rounded-lg w-full\'><svg class=\'w-12 h-12 mx-auto text-slate-300 mb-3\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\'></path></svg><p class=\'text-sm\'>Image format might not be supported in your browser.</p></div>';">
                 </div>
             </div>
 
@@ -381,7 +381,68 @@
             </div>
         </div>
 
-        <!-- PLACEHOLDER FOR STEPS 4-11 -->
+        <!-- STEP 4 CONTAINER -->
+        <div id="step-4-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
+            <div class="mb-10">
+                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 4: Axis</h2>
+                <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Determine the electrical axis of the heart.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-step-4">
+                
+                <!-- Section 1: Select Axis -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-center">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> Select Axis
+                    </h3>
+                    <div class="space-y-4 pt-2">
+                        <label class="flex items-center gap-3 group cursor-pointer bg-white px-5 py-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition">
+                            <input type="checkbox" id="axis-normal" class="axis-checkbox w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 font-medium transition">Normal axis</span>
+                        </label>
+                        <label class="flex items-center gap-3 group cursor-pointer bg-white px-5 py-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition">
+                            <input type="checkbox" id="axis-rad" class="axis-checkbox w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 font-medium transition">Right axis deviation</span>
+                        </label>
+                        <label class="flex items-center gap-3 group cursor-pointer bg-white px-5 py-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition">
+                            <input type="checkbox" id="axis-lad" class="axis-checkbox w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 font-medium transition">Left axis deviation</span>
+                        </label>
+                        <label class="flex items-center gap-3 group cursor-pointer bg-white px-5 py-4 rounded-xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition">
+                            <input type="checkbox" id="axis-extreme" class="axis-checkbox w-5 h-5 accent-indigo-600 rounded border-gray-300 transition">
+                            <span class="text-slate-700 group-hover:text-indigo-700 font-medium transition">Extreme axis deviation</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Section 2: Axis Guide Image -->
+                <div class="bg-indigo-50/30 rounded-2xl p-6 border border-indigo-50 shadow-sm h-full flex flex-col">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> Axis Reference
+                    </h3>
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm overflow-hidden flex-grow flex flex-col justify-center mt-2">
+                        <img src="https://raw.githubusercontent.com/akhilrajs/10-Steps-ECG-Diagnosis/refs/heads/main/axis.tiff" 
+                             alt="Axis reading guide" 
+                             class="max-w-full h-auto mx-auto rounded-lg object-contain border border-slate-100"
+                             onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'p-6 text-center text-slate-500 bg-slate-50 rounded-lg w-full\'><svg class=\'w-10 h-10 mx-auto text-slate-300 mb-2\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z\'></path></svg><p class=\'text-sm\'>TIFF Image format might not be supported natively in your browser.</p></div>';">
+                        <p class="text-xs text-slate-400 mt-4 text-center">Note: TIFF formats may not render natively in all web browsers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Interpretation Box Step 4 -->
+            <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
+                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Step 4 Interpretation
+                </h3>
+                <div class="space-y-3 text-lg md:text-xl text-slate-700" id="live-interpretation-4">
+                    <!-- Automatically populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PLACEHOLDER FOR STEPS 5-11 -->
         <div id="step-placeholder-container" class="step-container hidden p-10 flex flex-col items-center justify-center h-full min-h-[40vh] text-center">
             <svg class="w-16 h-16 text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             <h2 class="text-2xl font-playfair font-bold text-slate-700 mb-2" id="placeholder-title">Under Construction</h2>
@@ -474,6 +535,7 @@
             updateInterpretationStep1();
             updateInterpretationStep2();
             updateInterpretationStep3();
+            updateInterpretationStep4();
         });
 
         // --- Live Interpretation Logic: STEP 1 ---
@@ -668,13 +730,52 @@
 
             targetDiv.innerHTML = interpHTML;
 
-            // Save to LocalStorage for page 11 (Report page)
             const step3Data = {
                 rate: rate,
                 diagnosis: diagnosis,
                 htmlSummary: interpHTML 
             };
             localStorage.setItem('ecg_step3_data', JSON.stringify(step3Data));
+        }
+
+        // --- Live Interpretation Logic: STEP 4 ---
+        const axisCheckboxes = document.querySelectorAll('.axis-checkbox');
+        
+        axisCheckboxes.forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                // Mutually exclusive behavior
+                if (e.target.checked) {
+                    axisCheckboxes.forEach(other => {
+                        if (other !== e.target) {
+                            other.checked = false;
+                        }
+                    });
+                }
+                updateInterpretationStep4();
+            });
+        });
+
+        function updateInterpretationStep4() {
+            let status = "Pending input";
+            
+            if (document.getElementById('axis-normal').checked) status = "Normal axis";
+            else if (document.getElementById('axis-rad').checked) status = "Right axis deviation";
+            else if (document.getElementById('axis-lad').checked) status = "Left axis deviation";
+            else if (document.getElementById('axis-extreme').checked) status = "Extreme axis deviation";
+
+            const interpHTML = `
+                <p><strong class="text-indigo-900 font-semibold">Axis Diagnosis:</strong> 
+                   <span class="${status === 'Pending input' ? 'text-slate-400' : 'text-slate-800 font-medium'}">${status}</span>
+                </p>
+            `;
+            
+            document.getElementById('live-interpretation-4').innerHTML = interpHTML;
+            
+            const step4Data = {
+                axis: status,
+                htmlSummary: interpHTML 
+            };
+            localStorage.setItem('ecg_step4_data', JSON.stringify(step4Data));
         }
 
     </script>
