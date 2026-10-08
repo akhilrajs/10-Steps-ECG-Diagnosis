@@ -734,6 +734,155 @@
             </div>
         </div>
 
+        <!-- STEP 9 -->
+        <div id="step-9-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
+            <div class="mb-10">
+                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 9: Rhythm Analysis & Diagnosis</h2>
+                <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Synthesizing heart rate, regularity, P-waves, QRS width, and PR relationships.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="form-step-9">
+                <!-- 1. Heart Rate -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">1</span> Heart Rate (bpm)
+                    </h3>
+                    <input type="number" id="rhythm-hr" placeholder="Auto-filled from Step 3" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm text-lg font-semibold text-slate-700">
+                    <p class="text-xs text-slate-400 mt-1">Synced from Step 3 calculation</p>
+                </div>
+
+                <!-- 2. QRS Duration -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">2</span> QRS Duration (ms)
+                    </h3>
+                    <input type="number" id="rhythm-qrs" placeholder="Auto-filled from Step 5" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm text-lg font-semibold text-slate-700">
+                    <p class="text-xs text-slate-400 mt-1">Synced from Step 5 (&lt;120 ms = Narrow, &ge;120 ms = Wide)</p>
+                </div>
+
+                <!-- 3. Rhythm Regularity -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">3</span> Rhythm Regularity
+                    </h3>
+                    <select id="rhythm-regularity" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm text-slate-700 font-semibold cursor-pointer">
+                        <option value="" disabled selected>Select regularity...</option>
+                        <option value="Regular">Regular</option>
+                        <option value="Irregular">Irregular</option>
+                    </select>
+                    <p class="text-xs text-slate-400 mt-1">Synced from Step 2</p>
+                </div>
+
+                <!-- 4. PR Interval -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">4</span> PR Interval (ms)
+                    </h3>
+                    <input type="number" id="rhythm-pr" placeholder="Auto-filled from Step 5" class="w-full px-4 py-2.5 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-400 outline-none transition bg-white shadow-sm text-lg font-semibold text-slate-700">
+                    <p class="text-xs text-slate-400 mt-1">Synced from Step 5</p>
+                </div>
+
+                <!-- 5. P Wave Presence -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-2">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">5</span> P Wave Status
+                    </h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm hover:border-indigo-300 transition">
+                            <input type="radio" name="p-wave-status" value="present" class="accent-indigo-600 w-4 h-4" onchange="handlePWaveChange()">
+                            <span class="text-slate-700 font-medium">Present</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm hover:border-indigo-300 transition">
+                            <input type="radio" name="p-wave-status" value="absent" class="accent-indigo-600 w-4 h-4" onchange="handlePWaveChange()">
+                            <span class="text-slate-700 font-medium">Absent</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm hover:border-indigo-300 transition">
+                            <input type="radio" name="p-wave-status" value="unclear" class="accent-indigo-600 w-4 h-4" onchange="handlePWaveChange()">
+                            <span class="text-slate-700 font-medium">Unclear</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 6. P-Wave Morphology (Conditional) -->
+                <div id="container-p-morphology" class="hidden bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-2 transition-all">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">6</span> P-Wave Morphology
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="radio" name="p-morphology" value="normal" class="accent-indigo-600 w-4 h-4" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">Normal</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="radio" name="p-morphology" value="multiple" class="accent-indigo-600 w-4 h-4" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">Multiple morphologies</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="radio" name="p-morphology" value="flutter" class="accent-indigo-600 w-4 h-4" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">Flutter waves</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="radio" name="p-morphology" value="retrograde" class="accent-indigo-600 w-4 h-4" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">Retrograde</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 7. P -> QRS Relationship (Conditional) -->
+                <div id="container-p-relation" class="hidden bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-2 transition-all">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">7</span> P &rarr; QRS Relationship
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="radio" name="p-relation" value="1:1" class="accent-indigo-600 w-4 h-4" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">1:1</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="radio" name="p-relation" value="variable" class="accent-indigo-600 w-4 h-4" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">Variable</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="radio" name="p-relation" value="more_p" class="accent-indigo-600 w-4 h-4" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">More P than QRS</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="radio" name="p-relation" value="dissociation" class="accent-indigo-600 w-4 h-4" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">AV dissociation</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Extra Checkboxes for AV Blocks / Advanced features -->
+                <div class="bg-slate-50/50 rounded-2xl p-6 border border-slate-100 shadow-sm md:col-span-2">
+                    <h3 class="text-lg font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                        <span class="bg-indigo-100 text-indigo-700 w-7 h-7 rounded-full flex items-center justify-center text-sm font-playfair">8</span> Block Characteristics & Observations
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="checkbox" id="block-wenckebach" class="accent-indigo-600 w-4 h-4 rounded" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">Progressive PR prolongation with dropped QRS</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 bg-white rounded-xl border border-slate-200 cursor-pointer shadow-sm">
+                            <input type="checkbox" id="block-mobitz2" class="accent-indigo-600 w-4 h-4 rounded" onchange="evaluateRhythm()">
+                            <span class="text-slate-700 text-sm">Constant PR intervals with sudden dropped QRS</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 9 Output Box -->
+            <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
+                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Step 9 Rhythm Diagnosis
+                </h3>
+                <div class="space-y-3 text-base md:text-lg font-semibold text-slate-800" id="live-interpretation-9">
+                    <p class="text-slate-400 italic">Complete inputs above to generate rhythm classification.</p>
+                </div>
+            </div>
+        </div>
+
         <!-- STEP 10 -->
         <div id="step-10-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
@@ -917,10 +1066,12 @@
             const targetContainer = document.getElementById(`step-${stepNum}-container`);
             if (targetContainer) {
                 targetContainer.classList.remove('hidden');
-                if (stepNum === 10) {
+                if (stepNum === 9) {
+                    populateStep9AutoFields();
+                } else if (stepNum === 10) {
                     generateStep10Report();
                 } else if (stepNum === 11) {
-                    generateStep10Report(); // ensure 10 is generated first so overall diagnoses exist
+                    generateStep10Report(); 
                     generateStep11Report();
                 }
             } else {
@@ -1122,14 +1273,11 @@
             else if (prSb.value !== "") prValueMs = parseFloat(prSb.value) * 40; 
 
             if (prValueMs !== null && !isNaN(prValueMs)) {
-                let prDiagnosis = "", prClass = "text-slate-800";
-                if (prValueMs < 120) { prDiagnosis = "Short PR"; prClass = "text-blue-600"; } 
-                else if (prValueMs > 200) { prDiagnosis = "Prolonged PR"; prClass = "text-red-600"; } 
-                else { prDiagnosis = "Normal PR (0.12 - 0.20 s)"; prClass = "text-emerald-600"; }
-                htmlFragments.push(`
-                    <div class="mb-3">
-                        <p><strong class="text-indigo-900 font-semibold">PR Interval:</strong> ${prValueMs} ms <span class="mx-2 text-slate-300">|</span> <span class="font-bold ${prClass}">${prDiagnosis}</span></p>
-                    </div>`);
+                let prDiagnosis = "";
+                if (prValueMs < 120) prDiagnosis = "Short PR"; 
+                else if (prValueMs > 200) prDiagnosis = "Prolonged PR"; 
+                else prDiagnosis = "Normal PR";
+                htmlFragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">PR Interval:</strong> ${prValueMs} ms | <span>${prDiagnosis}</span></p></div>`);
             }
 
             let qrsValueMs = null;
@@ -1137,14 +1285,9 @@
             else if (qrsSb.value !== "") qrsValueMs = parseFloat(qrsSb.value) * 40;
 
             if (qrsValueMs !== null && !isNaN(qrsValueMs)) {
-                let qrsDiagnosis = "", qrsClass = "text-slate-800";
-                if (qrsValueMs < 120) { qrsDiagnosis = "Narrow base QRS complexes"; qrsClass = "text-emerald-600"; } 
-                else { qrsDiagnosis = "Wide based QRS complexes"; qrsClass = "text-red-600"; }
+                let qrsDiagnosis = qrsValueMs < 120 ? "Narrow base QRS" : "Wide based QRS";
                 if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
-                htmlFragments.push(`
-                    <div class="mb-3">
-                        <p><strong class="text-indigo-900 font-semibold">QRS Complex:</strong> ${qrsValueMs} ms <span class="mx-2 text-slate-300">|</span> <span class="font-bold ${qrsClass}">${qrsDiagnosis}</span></p>
-                    </div>`);
+                htmlFragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">QRS Complex:</strong> ${qrsValueMs} ms | <span>${qrsDiagnosis}</span></p></div>`);
             }
 
             let qtSbVal = parseFloat(qtSb.value);
@@ -1152,15 +1295,9 @@
             if (!isNaN(qtSbVal) && !isNaN(rrSbVal) && rrSbVal > 0) {
                 let qtMs = qtSbVal * 40, rrSec = rrSbVal * 0.04;
                 let qtc = Math.round(qtMs / Math.sqrt(rrSec));
-                let qtcDiagnosis = "", qtcClass = "text-slate-800";
-                if (qtc < 350) { qtcDiagnosis = "Short QTc"; qtcClass = "text-blue-600"; } 
-                else if (qtc > 450) { qtcDiagnosis = "Prolonged QTc"; qtcClass = "text-red-600"; } 
-                else { qtcDiagnosis = "Normal QTc (350 - 450 ms)"; qtcClass = "text-emerald-600"; }
+                let qtcDiagnosis = qtc < 350 ? "Short QTc" : (qtc > 450 ? "Prolonged QTc" : "Normal QTc");
                 if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
-                htmlFragments.push(`
-                    <div class="mb-1">
-                        <p><strong class="text-indigo-900 font-semibold">QTc (Bazett's):</strong> ${qtc} ms <span class="mx-2 text-slate-300">|</span> <span class="font-bold ${qtcClass}">${qtcDiagnosis}</span></p>
-                    </div>`);
+                htmlFragments.push(`<div class="mb-1"><p><strong class="text-indigo-900 font-semibold">QTc:</strong> ${qtc} ms | <span>${qtcDiagnosis}</span></p></div>`);
             }
 
             const targetDiv = document.getElementById('live-interpretation-5');
@@ -1180,32 +1317,10 @@
             const isRVH = document.getElementById('rvh-1').checked || document.getElementById('rvh-2').checked;
 
             let htmlFragments = [];
-
-            if (isRAA) htmlFragments.push(`
-                <div class="mb-3">
-                    <p><strong class="text-indigo-900 font-semibold">Right Atrial Abnormality (RAA):</strong> <span class="font-bold text-red-600">Present</span></p>
-                </div>`);
-            if (isLAA) {
-                if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
-                htmlFragments.push(`
-                <div class="mb-3">
-                    <p><strong class="text-indigo-900 font-semibold">Left Atrial Abnormality (LAA):</strong> <span class="font-bold text-red-600">Present</span></p>
-                </div>`);
-            }
-            if (isRVH) {
-                if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
-                htmlFragments.push(`
-                <div class="mb-3">
-                    <p><strong class="text-indigo-900 font-semibold">Right Ventricular Hypertrophy (RVH):</strong> <span class="font-bold text-red-600">Present</span></p>
-                </div>`);
-            }
-            if (isLVH) {
-                if (htmlFragments.length > 0) htmlFragments.push(`<hr class="border-slate-200 my-3">`);
-                htmlFragments.push(`
-                <div class="mb-3">
-                    <p><strong class="text-indigo-900 font-semibold">Left Ventricular Hypertrophy (LVH):</strong> <span class="font-bold text-red-600">Present</span></p>
-                </div>`);
-            }
+            if (isRAA) htmlFragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">Right Atrial Abnormality (RAA)</strong></p></div>`);
+            if (isLAA) htmlFragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">Left Atrial Abnormality (LAA)</strong></p></div>`);
+            if (isRVH) htmlFragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">Right Ventricular Hypertrophy (RVH)</strong></p></div>`);
+            if (isLVH) htmlFragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">Left Ventricular Hypertrophy (LVH)</strong></p></div>`);
 
             const targetDiv = document.getElementById('live-interpretation-6');
             if (htmlFragments.length === 0) targetDiv.innerHTML = `<p class="text-slate-400 italic">Select observations above to view interpretations.</p>`;
@@ -1258,57 +1373,18 @@
             const hasLAFB = document.getElementById('lafb-qr').checked || document.getElementById('lafb-rs').checked || document.getElementById('lafb-rpeak').checked;
 
             let fragments = [];
-
-            if (hasLBBB) {
-                fragments.push(`
-                    <div class="mb-3">
-                        <p><strong class="text-indigo-900 font-semibold">Left Bundle Branch Block (LBBB):</strong> <span class="font-bold text-red-600">Present</span></p>
-                    </div>
-                `);
-            }
-            
-            if (hasRBBB && !hasLAFB) {
-                fragments.push(`
-                    <div class="mb-3">
-                        <p><strong class="text-indigo-900 font-semibold">Right Bundle Branch Block (RBBB):</strong> <span class="font-bold text-red-600">Present</span></p>
-                    </div>
-                `);
-            }
-
-            if (hasLAFB && !hasRBBB) {
-                fragments.push(`
-                    <div class="mb-3">
-                        <p><strong class="text-indigo-900 font-semibold">Left Anterior Fascicular Block (LAFB):</strong> <span class="font-bold text-red-600">Present</span></p>
-                    </div>
-                `);
-            }
-
-            if (hasRBBB && hasLAFB) {
-                fragments.push(`
-                    <div class="mb-3">
-                        <p><strong class="text-indigo-900 font-semibold">Bifascicular Block:</strong> <span class="font-bold text-red-600">Present</span></p>
-                    </div>
-                    <div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800 shadow-sm animate-pulse">
-                        <p class="font-bold text-lg flex items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                            ! possible MYOCARDIAL INFARCTION 
-                        </p>
-                        <p class="mt-1 ml-8 font-medium">Do Troponins and 2D echo</p>
-                    </div>
-                `);
-            }
+            if (hasLBBB) fragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">Left Bundle Branch Block (LBBB)</strong></p></div>`);
+            if (hasRBBB && !hasLAFB) fragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">Right Bundle Branch Block (RBBB)</strong></p></div>`);
+            if (hasLAFB && !hasRBBB) fragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">Left Anterior Fascicular Block (LAFB)</strong></p></div>`);
+            if (hasRBBB && hasLAFB) fragments.push(`<div class="mb-3"><p><strong class="text-indigo-900 font-semibold">Bifascicular Block</strong></p></div>`);
 
             const targetDiv = document.getElementById('live-interpretation-7');
-            if (fragments.length === 0) {
-                targetDiv.innerHTML = `<p class="text-slate-400 italic">Select observations above to view interpretations.</p>`;
-            } else {
-                targetDiv.innerHTML = fragments.join("");
-            }
+            if (fragments.length === 0) targetDiv.innerHTML = `<p class="text-slate-400 italic">Select observations above to view interpretations.</p>`;
+            else targetDiv.innerHTML = fragments.join("");
 
             localStorage.setItem('ecg_step7_data', JSON.stringify({ htmlSummary: targetDiv.innerHTML }));
         }
 
-        /* --- STEP 8 LOGIC --- */
         function initStep8Grid() {
             const grid = document.getElementById('leads-grid');
             LEADS.forEach(lead => {
@@ -1354,9 +1430,8 @@
         function toggleLeadDetails(lead) {
             const details = document.getElementById(`lead-details-${lead}`);
             const toggle = document.getElementById(`lead-toggle-${lead}`);
-            if(toggle.checked) {
-                details.classList.remove('hidden');
-            } else {
+            if(toggle.checked) details.classList.remove('hidden');
+            else {
                 details.classList.add('hidden');
                 document.getElementById(`st-elev-${lead}`).checked = false;
                 document.getElementById(`st-dep-${lead}`).checked = false;
@@ -1375,10 +1450,7 @@
         }
 
         function evaluateIschemia() {
-            let elev = [];
-            let dep = [];
-            let tinv = [];
-
+            let elev = [], dep = [], tinv = [];
             LEADS.forEach(l => {
                 const ls = l.toLowerCase();
                 if (document.getElementById(`st-elev-${ls}`)?.checked) elev.push(l);
@@ -1390,58 +1462,165 @@
             const hasAll = (arr, targets) => targets.every(t => arr.includes(t));
             const hasAny = (arr, targets) => targets.some(t => arr.includes(t));
 
-            // Diagnosis rules
-            if (hasAll(elev, ['V1', 'V2', 'V3', 'V4'])) {
-                if (hasAll(elev, ['V5', 'V6', 'I', 'aVL'])) diagnoses.push("Anterolateral MI (ST elevation in V1–V6, I, and aVL)");
-                else diagnoses.push("Anterior MI (ST elevation in V1–V4)");
-            } else if (hasAll(elev, ['V1', 'V2', 'V3'])) {
-                diagnoses.push("Anteroseptal MI (ST elevation in V1, V2, and V3)");
-            } else if (hasAll(elev, ['V1', 'V2'])) {
-                diagnoses.push("Anteroseptal MI (ST elevation in V1 and V2)");
-            }
-
-            if (hasAll(elev, ['I', 'aVL']) && !hasAny(elev, ['V1','V2','V3','V4','V5','V6'])) {
-                diagnoses.push("Lateral MI (ST elevation in I and aVL)");
-            }
-
-            if (hasAll(elev, ['II', 'III', 'aVF'])) {
-                if (hasAll(elev, ['V5', 'V6'])) {
-                    diagnoses.push("Inferolateral MI (ST elevation in II, III, aVF, V5, and V6)");
-                } else if (hasAny(dep, ['I', 'aVL', 'V5', 'V6'])) {
-                    diagnoses.push("Right Ventricular (RV) MI (ST elevation in II, III, aVF with ST depression in I, aVL or V5, V6)");
-                } else {
-                    diagnoses.push("Inferior MI (ST elevation in II, III, and aVF)");
-                }
-            }
-
-            if (hasAny(dep, ['V1', 'V2', 'V3'])) {
-                diagnoses.push("Suspected Posterior Wall MI (ST depression in V1, V2, or V3)");
-            }
+            if (hasAll(elev, ['V1', 'V2', 'V3', 'V4'])) diagnoses.push("Anterior/Anterolateral MI");
+            else if (hasAll(elev, ['V1', 'V2', 'V3'])) diagnoses.push("Anteroseptal MI");
+            if (hasAll(elev, ['I', 'aVL'])) diagnoses.push("Lateral MI");
+            if (hasAll(elev, ['II', 'III', 'aVF'])) diagnoses.push("Inferior MI");
+            if (hasAny(dep, ['V1', 'V2', 'V3'])) diagnoses.push("Suspected Posterior Wall MI");
 
             const targetDiv = document.getElementById('live-interpretation-8');
             if (diagnoses.length === 0 && elev.length === 0 && dep.length === 0 && tinv.length === 0) {
                 targetDiv.innerHTML = `<p class="text-slate-500 italic">No ST/T changes selected.</p>`;
             } else {
                 let html = `<ul class="list-disc pl-5 space-y-2">`;
-                if(diagnoses.length > 0) {
-                    diagnoses.forEach(d => html += `<li class="font-bold text-rose-700">${d}</li>`);
-                } else {
-                    html += `<li><span class="font-bold text-amber-600">Non-specific ST/T changes detected.</span> Does not strictly meet classic contiguous lead criteria.</li>`;
-                }
-                
-                let details = [];
-                if(elev.length > 0) details.push(`Elevation in: ${elev.join(', ')}`);
-                if(dep.length > 0) details.push(`Depression in: ${dep.join(', ')}`);
-                if(tinv.length > 0) details.push(`T inversion in: ${tinv.join(', ')}`);
-                
-                html += `<li class="text-slate-600 text-sm mt-2">${details.join(' | ')}</li></ul>`;
-                targetDiv.innerHTML = html;
+                if(diagnoses.length > 0) diagnoses.forEach(d => html += `<li class="font-bold text-rose-700">${d}</li>`);
+                else html += `<li><span class="font-bold text-amber-600">Non-specific ST/T changes detected.</span></li>`;
+                targetDiv.innerHTML = html + `</ul>`;
             }
 
-            localStorage.setItem('ecg_step8_data', JSON.stringify({ 
-                diagnoses, 
-                htmlSummary: targetDiv.innerHTML 
-            }));
+            localStorage.setItem('ecg_step8_data', JSON.stringify({ diagnoses, htmlSummary: targetDiv.innerHTML }));
+        }
+
+        /* --- STEP 9 AUTOMATION & LOGIC TREE --- */
+        function populateStep9AutoFields() {
+            // Pull HR from Step 3 storage
+            const step3 = JSON.parse(localStorage.getItem('ecg_step3_data') || '{}');
+            if (step3.rate) document.getElementById('rhythm-hr').value = step3.rate;
+
+            // Pull QRS and PR from Step 5 storage or inputs
+            const qrsVal = document.getElementById('qrs-ms').value || (parseFloat(document.getElementById('qrs-sb').value || 0) * 40);
+            if (qrsVal) document.getElementById('rhythm-qrs').value = qrsVal;
+
+            const prVal = document.getElementById('pr-ms').value || (parseFloat(document.getElementById('pr-sb').value || 0) * 40);
+            if (prVal) document.getElementById('rhythm-pr').value = prVal;
+
+            // Pull Regularity from Step 2 storage
+            const step2 = JSON.parse(localStorage.getItem('ecg_step2_data') || '{}');
+            if (step2.regularity && step2.regularity !== "Pending input") {
+                document.getElementById('rhythm-regularity').value = step2.regularity;
+            }
+
+            evaluateRhythm();
+        }
+
+        function handlePWaveChange() {
+            const status = document.querySelector('input[name="p-wave-status"]:checked')?.value;
+            const morphContainer = document.getElementById('container-p-morphology');
+            const relationContainer = document.getElementById('container-p-relation');
+
+            if (status === 'present' || status === 'unclear') {
+                morphContainer.classList.remove('hidden');
+                relationContainer.classList.remove('hidden');
+            } else {
+                morphContainer.classList.add('hidden');
+                relationContainer.classList.add('hidden');
+                // clear selections
+                document.querySelectorAll('input[name="p-morphology"]').forEach(el => el.checked = false);
+                document.querySelectorAll('input[name="p-relation"]').forEach(el => el.checked = false);
+            }
+            evaluateRhythm();
+        }
+
+        document.getElementById('form-step-9').addEventListener('input', evaluateRhythm);
+        document.getElementById('form-step-9').addEventListener('change', evaluateRhythm);
+
+        function evaluateRhythm() {
+            const hr = parseFloat(document.getElementById('rhythm-hr').value);
+            const qrs = parseFloat(document.getElementById('rhythm-qrs').value);
+            const regularity = document.getElementById('rhythm-regularity').value;
+            const pr = parseFloat(document.getElementById('rhythm-pr').value);
+            
+            const pStatus = document.querySelector('input[name="p-wave-status"]:checked')?.value;
+            const pMorph = document.querySelector('input[name="p-morphology"]:checked')?.value;
+            const pRelation = document.querySelector('input[name="p-relation"]:checked')?.value;
+
+            const hasWenckebach = document.getElementById('block-wenckebach').checked;
+            const hasMobitz2 = document.getElementById('block-mobitz2').checked;
+
+            let diagnosis = "Rhythm cannot be definitively classified from the entered findings. Review the original ECG.";
+            let isQualified = false;
+
+            if (!isNaN(qrs) && !isNaN(hr)) {
+                const isNarrow = qrs < 120;
+                const isWide = qrs >= 120;
+                const isRegular = regularity === 'Regular';
+                const isIrregular = regularity === 'Irregular';
+
+                // --- AV Blocks Check First (regardless of HR simple category if PR/drop patterns match) ---
+                if (hasWenckebach) {
+                    diagnosis = "Mobitz I (Wenckebach) AV Block";
+                    isQualified = true;
+                } else if (hasMobitz2) {
+                    diagnosis = "Mobitz II AV Block";
+                    isQualified = true;
+                } else if (!isNaN(pr) && pr > 200 && pRelation === '1:1') {
+                    diagnosis = "First-degree AV block";
+                    isQualified = true;
+                } else if (pRelation === 'dissociation' || (pStatus === 'present' && pRelation === 'more_p' && isRegular)) {
+                    diagnosis = "Complete Heart Block (Third-degree AV block)";
+                    isQualified = true;
+                } else {
+                    // --- Rate & Tachycardia / Bradycardia Tree ---
+                    if (hr > 100) {
+                        // Tachycardia (>100 bpm)
+                        if (isNarrow && isRegular) {
+                            if (pStatus === 'present' && pMorph === 'normal' && pRelation === '1:1') {
+                                diagnosis = "Sinus tachycardia";
+                                isQualified = true;
+                            } else if (pStatus === 'absent' || pStatus === 'unclear') {
+                                diagnosis = "Likely SVT (Supraventricular Tachycardia)";
+                                isQualified = true;
+                            } else if (pMorph === 'flutter') {
+                                diagnosis = "Atrial flutter";
+                                isQualified = true;
+                            }
+                        } else if (isNarrow && isIrregular) {
+                            if (pStatus === 'absent') {
+                                diagnosis = "Atrial fibrillation";
+                                isQualified = true;
+                            } else if (pStatus === 'present' && pMorph === 'multiple') {
+                                diagnosis = "Multifocal Atrial Tachycardia (MAT)";
+                                isQualified = true;
+                            } else if (pMorph === 'flutter' && pRelation === 'variable') {
+                                diagnosis = "Atrial flutter with variable AV block";
+                                isQualified = true;
+                            }
+                        } else if (isWide && isRegular) {
+                            diagnosis = "Wide-complex tachycardia — VT until proven otherwise (Supports VT if AV dissociation present)";
+                            isQualified = true;
+                        } else if (isWide && isIrregular) {
+                            diagnosis = "Wide irregular tachycardia (Consider AF with BBB, pre-excited AF/WPW, polymorphic VT or Torsades de Pointes)";
+                            isQualified = true;
+                        }
+                    } else if (hr >= 60 && hr <= 100) {
+                        // Normal Rate (60-100 bpm)
+                        if (pStatus === 'present' && pMorph === 'normal' && pRelation === '1:1') {
+                            diagnosis = "Normal sinus rhythm";
+                            isQualified = true;
+                        } else if (pStatus === 'absent' && isIrregular) {
+                            diagnosis = "Atrial fibrillation";
+                            isQualified = true;
+                        } else if (pMorph === 'flutter') {
+                            diagnosis = "Atrial flutter";
+                            isQualified = true;
+                        }
+                    } else if (hr < 60 && !isNaN(hr)) {
+                        // Bradycardia (<60 bpm)
+                        if (pStatus === 'present' && pMorph === 'normal' && pRelation === '1:1') {
+                            diagnosis = "Sinus bradycardia";
+                            isQualified = true;
+                        } else if (pRelation === 'dissociation') {
+                            diagnosis = "Complete Heart Block";
+                            isQualified = true;
+                        }
+                    }
+                }
+            }
+
+            const targetDiv = document.getElementById('live-interpretation-9');
+            targetDiv.innerHTML = `<p class="${isQualified ? 'text-indigo-900 font-bold text-xl' : 'text-slate-500 italic text-base'}">${diagnosis}</p>`;
+
+            localStorage.setItem('ecg_step9_data', JSON.stringify({ diagnosis, htmlSummary: targetDiv.innerHTML }));
         }
 
         function generateStep10Report() {
@@ -1450,7 +1629,6 @@
 
             const getStored = (key) => JSON.parse(localStorage.getItem(key) || '{}');
             
-            // Retrieve all step data from local storage
             const step1 = getStored('ecg_step1_data');
             const step2 = getStored('ecg_step2_data');
             const step3 = getStored('ecg_step3_data');
@@ -1459,42 +1637,41 @@
             const step6 = getStored('ecg_step6_data');
             const step7 = getStored('ecg_step7_data');
             const step8 = getStored('ecg_step8_data');
+            const step9 = getStored('ecg_step9_data');
 
             // --- Synthesize Overall Diagnosis ---
-            if (step3.diagnosis && !step3.diagnosis.includes("Normal")) overallDiagnoses.push(step3.diagnosis);
+            if (step9.diagnosis && !step9.diagnosis.includes("cannot be definitively")) {
+                overallDiagnoses.push(step9.diagnosis);
+            } else if (step3.diagnosis && !step3.diagnosis.includes("Normal")) {
+                overallDiagnoses.push(step3.diagnosis);
+            }
+
             if (step4.axis && !step4.axis.includes("Normal") && !step4.axis.includes("Pending")) overallDiagnoses.push(step4.axis);
             
-            // Add ischemia/infarction from Step 8
-            if (step8.diagnoses && step8.diagnoses.length > 0) {
-                overallDiagnoses.push(...step8.diagnoses);
-            }
+            if (step8.diagnoses && step8.diagnoses.length > 0) overallDiagnoses.push(...step8.diagnoses);
             
-            // Add Bundle Branch Blocks from Step 7
-            if (step7.htmlSummary && step7.htmlSummary.includes("Present")) {
+            if (step7.htmlSummary && step7.htmlSummary.includes("Block")) {
                 if (step7.htmlSummary.includes("Left Bundle Branch Block")) overallDiagnoses.push("Left Bundle Branch Block (LBBB)");
                 if (step7.htmlSummary.includes("Right Bundle Branch Block")) overallDiagnoses.push("Right Bundle Branch Block (RBBB)");
                 if (step7.htmlSummary.includes("Left Anterior Fascicular Block")) overallDiagnoses.push("Left Anterior Fascicular Block (LAFB)");
                 if (step7.htmlSummary.includes("Bifascicular Block")) overallDiagnoses.push("Bifascicular Block");
             }
             
-            // Add Chamber Enlargements from Step 6
-            if (step6.htmlSummary && step6.htmlSummary.includes("Present")) {
+            if (step6.htmlSummary && step6.htmlSummary.includes("Hypertrophy")) {
                 if (step6.htmlSummary.includes("Right Atrial")) overallDiagnoses.push("Right Atrial Abnormality");
                 if (step6.htmlSummary.includes("Left Atrial")) overallDiagnoses.push("Left Atrial Abnormality");
                 if (step6.htmlSummary.includes("Right Ventricular Hypertrophy")) overallDiagnoses.push("Right Ventricular Hypertrophy (RVH)");
                 if (step6.htmlSummary.includes("Left Ventricular Hypertrophy")) overallDiagnoses.push("Left Ventricular Hypertrophy (LVH)");
             }
 
-            // Render Overall Diagnosis UI
             let overallText = "";
             if (overallDiagnoses.length === 0) {
-                overallText = `<div class="flex items-center gap-2"><svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Essentially Normal ECG (based on provided findings)</span></div>`;
+                overallText = `<div class="flex items-center gap-2"><svg class="w-6 h-6 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <span>Essentially Normal ECG</span></div>`;
             } else {
                 overallText = `<ul class="list-disc pl-5 space-y-2">` + overallDiagnoses.map(item => `<li>${item}</li>`).join('') + `</ul>`;
             }
             document.getElementById('overall-diagnosis-content').innerHTML = overallText;
 
-            // --- Construct Detailed Findings Breakdown ---
             const addDetail = (stepNum, title, html) => {
                 if (!html || html.includes('Pending input') || html.includes('Enter values above') || html.includes('Select observations') || html.includes('No ST/T changes selected')) {
                      return `
@@ -1518,13 +1695,12 @@
             detailedHTML += addDetail(6, "Chamber Enlargements", step6.htmlSummary);
             detailedHTML += addDetail(7, "Bundle Branch Blocks", step7.htmlSummary);
             detailedHTML += addDetail(8, "Ischemia", step8.htmlSummary);
+            detailedHTML += addDetail(9, "Rhythm Diagnosis", step9.htmlSummary);
 
             document.getElementById('detailed-findings-content').innerHTML = detailedHTML;
         }
 
-        /* --- STEP 11 (PRINT REPORT) LOGIC --- */
         function generateStep11Report() {
-            // Populate Patient details
             const name = document.getElementById('patient-name').value.trim() || 'Not Specified';
             const date = document.getElementById('patient-date').value || 'Not Specified';
             const time = document.getElementById('patient-time').value || 'Not Specified';
@@ -1534,11 +1710,9 @@
             document.getElementById('report-patient-time').innerText = time;
             document.getElementById('report-print-date').innerText = new Date().toLocaleDateString();
 
-            // Populate Overall Diagnosis
             const overallHtml = document.getElementById('overall-diagnosis-content').innerHTML;
             document.getElementById('report-overall-diagnosis').innerHTML = overallHtml;
 
-            // Populate Detailed Findings Table
             const tbody = document.getElementById('report-detailed-findings');
             let tableHtml = '';
             
@@ -1550,15 +1724,15 @@
                 {id: 5, title: 'Intervals'},
                 {id: 6, title: 'Enlargements'},
                 {id: 7, title: 'Conduction Blocks'},
-                {id: 8, title: 'Ischemia / ST Changes'}
+                {id: 8, title: 'Ischemia / ST Changes'},
+                {id: 9, title: 'Rhythm Analysis'}
             ];
 
             steps.forEach(step => {
                 const contentEl = document.getElementById(`live-interpretation-${step.id}`);
                 let content = contentEl ? contentEl.innerHTML : 'No data.';
                 
-                // Clean up pending messages for the formal report
-                if (content.includes('Pending input') || content.includes('Select observations') || content.includes('Enter value') || content.includes('No ST/T changes')) {
+                if (content.includes('Pending input') || content.includes('Select observations') || content.includes('Enter value') || content.includes('No ST/T changes') || content.includes('Complete inputs above')) {
                     content = '<span class="text-slate-400 italic">No significant findings or pending input.</span>';
                 }
 
