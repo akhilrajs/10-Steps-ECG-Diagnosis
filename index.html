@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Josefin+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -18,6 +18,14 @@
 
         .font-playfair {
             font-family: 'Playfair Display', serif;
+        }
+
+        .font-geologica {
+            font-family: 'Geologica', sans-serif;
+        }
+
+        .font-josefin {
+            font-family: 'Josefin Sans', sans-serif;
         }
 
         #glider {
@@ -143,7 +151,7 @@
 <body class="min-h-screen flex flex-col items-center pt-10 pb-20 px-4 sm:px-6">
 
     <header class="w-full max-w-5xl mb-10 flex flex-col items-center">
-        <h1 class="text-4xl md:text-5xl font-playfair font-bold text-slate-800 mb-8 text-center tracking-tight drop-shadow-sm">
+        <h1 class="text-4xl md:text-5xl font-geologica font-bold text-slate-800 mb-8 text-center tracking-tight drop-shadow-sm">
             10 Step ECG diagnosis
         </h1>
 
@@ -162,7 +170,7 @@
         <!-- STEP 1 -->
         <div id="step-1-container" class="step-container p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 1: Adequacy and Technicality</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 1: Adequacy and Technicality</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Before interpreting any ECG, quickly check:</p>
             </div>
 
@@ -289,7 +297,7 @@
             </div>
 
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Step 1 Interpretation
                 </h3>
@@ -300,7 +308,7 @@
         <!-- STEP 2 -->
         <div id="step-2-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-8">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 2: Regularity</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 2: Regularity</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Determine the regularity of the R-R intervals.</p>
             </div>
 
@@ -330,7 +338,7 @@
             </div>
 
             <div class="mt-8 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Step 2 Interpretation
                 </h3>
@@ -341,7 +349,7 @@
         <!-- STEP 3 -->
         <div id="step-3-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 3: Rate</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 3: Rate</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Calculate the heart rate based on ECG boxes.</p>
             </div>
 
@@ -383,7 +391,7 @@
             </div>
 
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Step 3 Interpretation
                 </h3>
@@ -394,7 +402,7 @@
         <!-- STEP 4 -->
         <div id="step-4-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 4: Axis</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 4: Axis</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Determine the electrical axis of the heart.</p>
             </div>
 
@@ -434,7 +442,7 @@
             </div>
 
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Step 4 Interpretation
                 </h3>
@@ -445,7 +453,7 @@
         <!-- STEP 5 -->
         <div id="step-5-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 5: Intervals</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 5: Intervals</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Calculate the PR, QRS, QT intervals and QTc.</p>
             </div>
 
@@ -523,7 +531,7 @@
             </div>
 
             <div class="mt-8 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Step 5 Interpretation
                 </h3>
@@ -534,7 +542,7 @@
         <!-- STEP 6 -->
         <div id="step-6-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 6: Chamber Enlargements</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 6: Chamber Enlargements</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Identify potential atrial and ventricular abnormalities.</p>
             </div>
 
@@ -612,7 +620,7 @@
             </div>
 
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Step 6 Interpretation
                 </h3>
@@ -631,7 +639,7 @@
             </div>
 
             <div class="mb-10">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 7: Bundle Branch Blocks</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 7: Bundle Branch Blocks</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Examine for conduction delays in the ventricles.</p>
             </div>
 
@@ -706,7 +714,7 @@
             </div>
 
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Step 7 Interpretation
                 </h3>
@@ -717,7 +725,7 @@
         <!-- STEP 8 -->
         <div id="step-8-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-8">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 8: Ischemia</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 8: Ischemia</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">ST changes across 12 leads</p>
             </div>
 
@@ -726,7 +734,7 @@
             </div>
 
             <div class="mt-12 bg-rose-50/50 rounded-2xl p-6 sm:p-8 border border-rose-200 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-rose-900 mb-4 flex items-center gap-2 border-b border-rose-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-rose-900 mb-4 flex items-center gap-2 border-b border-rose-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                     Step 8 Interpretation
                 </h3>
@@ -737,7 +745,7 @@
         <!-- STEP 9 -->
         <div id="step-9-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 9: Rhythm Analysis & Diagnosis</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 9: Rhythm Analysis & Diagnosis</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-indigo-300 pl-4 py-1">Synthesizing heart rate, regularity, P-waves, QRS width, and PR relationships.</p>
             </div>
 
@@ -873,7 +881,7 @@
 
             <!-- Step 9 Output Box -->
             <div class="mt-12 bg-indigo-50/50 rounded-2xl p-6 sm:p-8 border border-indigo-100 shadow-inner">
-                <h3 class="text-xl font-playfair font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
+                <h3 class="text-xl font-geologica font-bold text-indigo-900 mb-4 flex items-center gap-2 border-b border-indigo-200 pb-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     Step 9 Rhythm Diagnosis
                 </h3>
@@ -886,13 +894,13 @@
         <!-- STEP 10 -->
         <div id="step-10-container" class="step-container hidden p-6 sm:p-8 md:p-10 transition-opacity duration-300">
             <div class="mb-10">
-                <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-3">Step 10: Overall Diagnosis & Report</h2>
+                <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-3">Step 10: Overall Diagnosis & Report</h2>
                 <p class="text-slate-500 font-medium border-l-4 border-emerald-400 pl-4 py-1">Synthesis of all ECG findings.</p>
             </div>
 
             <!-- Overall Diagnosis Green Box -->
             <div class="bg-emerald-50 rounded-2xl p-6 sm:p-8 border-2 border-emerald-300 shadow-sm mb-10">
-                <h3 class="text-2xl font-playfair font-bold text-emerald-900 mb-4 flex items-center gap-3 border-b border-emerald-200 pb-3">
+                <h3 class="text-2xl font-geologica font-bold text-emerald-900 mb-4 flex items-center gap-3 border-b border-emerald-200 pb-3">
                     <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     Overall Diagnosis
                 </h3>
@@ -903,7 +911,7 @@
 
             <!-- Detailed Breakdown -->
             <div class="bg-slate-50/50 rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm">
-                <h3 class="text-xl font-playfair font-bold text-slate-800 mb-6 border-b border-slate-200 pb-3">Detailed Step-by-Step Findings</h3>
+                <h3 class="text-xl font-geologica font-bold text-slate-800 mb-6 border-b border-slate-200 pb-3">Detailed Step-by-Step Findings</h3>
                 <div id="detailed-findings-content" class="space-y-6">
                     <!-- Generated via JS -->
                 </div>
@@ -914,7 +922,7 @@
         <div id="step-11-container" class="step-container hidden transition-opacity duration-300 pb-10 w-full">
             <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-end mb-6 px-4 gap-4 no-print pt-6">
                 <div>
-                    <h2 class="text-3xl font-playfair font-bold text-slate-800 mb-2">Step 11: Final Report</h2>
+                    <h2 class="text-3xl font-geologica font-bold text-slate-800 mb-2">Step 11: Final Report</h2>
                     <p class="text-slate-500 font-medium border-l-4 border-indigo-400 pl-4 py-1">Review and download the formal ECG interpretation.</p>
                 </div>
                 <button onclick="window.print()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-semibold shadow-md transition flex items-center gap-2 flex-shrink-0">
@@ -929,7 +937,7 @@
                 <!-- Report Header -->
                 <div class="border-b-2 border-indigo-900 pb-6 mb-6 flex justify-between items-end">
                     <div>
-                        <h1 class="text-3xl font-playfair font-bold text-indigo-900 uppercase tracking-wide">ECG Diagnosis Report</h1>
+                        <h1 class="text-3xl font-geologica font-bold text-indigo-900 uppercase tracking-wide">ECG Diagnosis Report</h1>
                         <p class="text-sm text-slate-500 mt-1 font-medium">Generated by 10 Step ECG Diagnosis Tool</p>
                     </div>
                     <div class="text-right text-sm font-medium text-slate-700">
@@ -949,7 +957,7 @@
 
                 <!-- Overall Diagnosis -->
                 <div class="mb-8">
-                    <h3 class="text-lg font-playfair font-bold text-indigo-900 border-b border-slate-200 pb-2 mb-4">Overall Impression</h3>
+                    <h3 class="text-lg font-geologica font-bold text-indigo-900 border-b border-slate-200 pb-2 mb-4">Overall Impression</h3>
                     <div id="report-overall-diagnosis" class="text-base font-semibold text-slate-800 p-5 bg-indigo-50/50 rounded-lg border border-indigo-100 shadow-sm">
                         <!-- Populated by JS -->
                     </div>
@@ -957,7 +965,7 @@
 
                 <!-- Detailed Findings -->
                 <div>
-                    <h3 class="text-lg font-playfair font-bold text-indigo-900 border-b border-slate-200 pb-2 mb-4">Detailed Findings</h3>
+                    <h3 class="text-lg font-geologica font-bold text-indigo-900 border-b border-slate-200 pb-2 mb-4">Detailed Findings</h3>
                     <div class="w-full text-sm border-t border-slate-200">
                         <table class="w-full text-left border-collapse">
                             <tbody id="report-detailed-findings" class="divide-y divide-slate-200">
@@ -980,7 +988,7 @@
         <!-- PLACEHOLDER FOR STEP 9 -->
         <div id="step-placeholder-container" class="step-container hidden p-10 flex flex-col items-center justify-center h-full min-h-[40vh] text-center">
             <svg class="w-16 h-16 text-slate-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-            <h2 class="text-2xl font-playfair font-bold text-slate-700 mb-2" id="placeholder-title">Under Construction</h2>
+            <h2 class="text-2xl font-geologica font-bold text-slate-700 mb-2" id="placeholder-title">Under Construction</h2>
             <p class="text-slate-500">This step will be added soon.</p>
         </div>
 
@@ -991,7 +999,7 @@
         <div class="bg-white rounded-3xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto m-4 border border-slate-100" onclick="event.stopPropagation()">
             <div class="p-6 sm:p-8">
                 <div class="flex justify-between items-start mb-4">
-                    <h2 class="text-2xl font-playfair font-bold text-slate-800">Sokolow–Lyon criteria (1949)</h2>
+                    <h2 class="text-2xl font-geologica font-bold text-slate-800">Sokolow–Lyon criteria (1949)</h2>
                     <button onclick="closeModal()" class="text-slate-400 hover:text-slate-700 transition p-1 bg-slate-100 hover:bg-slate-200 rounded-full">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
@@ -1034,7 +1042,7 @@
 
         for (let i = 1; i <= TOTAL_STEPS; i++) {
             const btn = document.createElement('button');
-            btn.className = `step-btn font-playfair w-12 h-12 flex items-center justify-center rounded-full text-slate-500 text-xl cursor-pointer focus:outline-none`;
+            btn.className = `step-btn font-josefin w-12 h-12 flex items-center justify-center rounded-full text-slate-500 text-xl cursor-pointer focus:outline-none`;
             btn.innerText = i;
             btn.dataset.step = i;
             
